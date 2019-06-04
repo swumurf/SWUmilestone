@@ -1,34 +1,31 @@
 /**
-date: May 17, 2019
+date: May 17, 2019~
 Author: Ji yoon, Park
 Title: Navigator function, importing SQLite, and async storage using react-native expo / SWUMURF_SWU Milage Project
- */
+Login.js 
+*/
 
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
-import {SQLite} from 'expo';
 
-/*SQLite db open*/ 
-const db=SQLite.openDatabase('user.db');
-let testdata={
-  id:'testid1',
-  StudentName:'testname1'
+let loginInfo={
+  studentNum:'',
+  password:''
 };
 
 /*async storage 에서 데이터 꺼내고, 받아오는 함수*/ 
 _storeData=async()=>{
     try{
-      await AsyncStorage.setItem('user',JSON.stringify(testdata),()=>{
-        console.log("async success!!"); //함수 내 동작 바꾸기
+      await AsyncStorage.setItem('loginInfo',JSON.stringify(loginInfo),()=>{
+        console.log("async success!!"); 
       });
     }catch(error){
       console.log(error);
     }
   }
-  _retrieveData=async()=>{
-    
+  _retrieveData=async()=>{  
     try{
-      const value=await AsyncStorage.getItem('user',(err,result)=>{
+      const value=await AsyncStorage.getItem('loginInfo',(err,result)=>{
         console.log(result); //함수 내 동작 바꾸기
       });
     }
@@ -36,17 +33,54 @@ _storeData=async()=>{
       console.log(error);
     }
   }
-/*로그인 정보 TextInput 받아오는 함수*/
-_loginTextInput=event=>{
-  this.setState({id:this.text})
-}
+
+
 /*Home 클래스 시작 */
 export default class Home extends React.Component {
 
-construnctor(props){
-  super(props);
-  this.id={id:""}
-  this.password={password:""};
+state={
+  studentNum:'',
+  password:''
+}
+
+/* 데이터 서버로 전송해서 서버 response 출력 함수*/
+postData=async(str)=>{
+  try{
+    let res=await fetch('http://52.78.119.153:3000/signin',{
+    method:'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body:JSON.stringify({
+      str
+    })
+    });
+    res=await res;
+    console.log(res);
+    //console.log("---------------jiyoon line-------------");
+    console.log(res._bodyText);
+  
+  }catch(error){
+    console.error(error);
+  }
+}
+
+/*로그인 정보 사용자의 TextInput에서 받아와 state에 저장하는 함수*/
+handleEmail=(text)=>{
+  this.setState({studentNum:text})
+}
+handlePassword=(text)=>{
+  this.setState({password:text})
+}
+
+/*state 에 저장되어 있는 이메일 loginInfo JSON 배열에 저장하는 함수*/
+login(studentNum,password){
+  console.log('studentNum :' + studentNum+' password'+password);
+  loginInfo.studentNum=studentNum;
+  loginInfo.password=password;
+  this.postData(loginInfo);
+  
 }
 /*sqlite 함수  -> terminate 05/30/2019
 update(){
@@ -68,46 +102,55 @@ render() {
       <View style={styles.content}>
       <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
         <Text style={{fontSize:15}}> ID </Text>
-        <TextInput style={styles.input} name="id"></TextInput>
+        <TextInput style={styles.input} name="id"
+          onChangeText={this.handleEmail}
+        ></TextInput>
       </View>
       <View>
-      <Text style={{fontSize:15}}> PASSWORD </Text>
-        <TextInput style={styles.input} name="password"></TextInput>
+      <Text style={{fontSize:15}}> 비밀번호 </Text>
+        <TextInput style={styles.input} name="password"
+        onChangeText={this.handlePassword}
+        ></TextInput>
       </View>
       
     </View>
     <Button style={styles.button} title="로그인"
     onPress={()=>{
       _storeData();
-      console.log('login onpress fuctionttt');
+      this.login(this.state.studentNum,this.state.password);
+      console.log('login onpress fuction');
+      this.props.navigation.navigate('Mainpage');
+          }}
+    >
+
+  </Button>
+  <Button style={styles.button} title="회원 가입"
+    onPress={()=>{
+      //_storeData();
+      //this.login(this.state.email,this.state.password);
+      console.log('signup onpress fuction');
+     // this.props.navigation.navigate('Signup');
           }}
     >
 
   </Button>
   
-  <Button style={styles.button}  
+  <Button style={styles.button} title="관리자로 로그인하기"
     onPress={()=>{
-      _retrieveData();
-    }}
-    title="SIGN IN"
-    color="#b75858"
-    accessibilityLabel="SIGN IN"
-    paddingBottom="30"
+      console.log('signin as a manager');
+     // this.props.navigation.navigate('Signup');
+          }}
     >
   </Button>
 
-  <Button style={styles.button}
-    onPress={()=>{ 
-    this.props.navigation.navigate('Profile')
-    }}
-    title="NAVIGATION"
-    color="#999999"
-    accessibilityLabel="NAVIGATION"
-    paddingBottom="30"
+  <Button style={styles.button} title="회원가입"
+    onPress={()=>{
+    console.log('signup');
+    this.props.navigation.navigate('Signup');
+          }}
     >
   </Button>
 </View>
-    
   );
 }
 }
