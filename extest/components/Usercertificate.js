@@ -1,68 +1,81 @@
 import React, { Component } from 'react';
-import {StyleSheet,Text,View,Image, TouchableOpacity} from 'react-native';
-import {Camera, Permissions} from 'expo';
+import {Image,  Text, View, StyleSheet, Button } from 'react-native';
+import * as Expo from 'expo';
+
+
+export default class Usercertificate extends Component {
+  
+  state = {
+    chosenImage: null,
+    takenImage:null
+  }
+
+  _launchCameraRollAsync =async ()=>{
+    let {status} = await Expo.Permissions.askAsync(Expo.Permissions.CAMERA_ROLL);
+    if(status !== 'granted'){
+      console.error('Camera not granted')
+      return
+    }
     
-export default class Usercertificate extends React.Component {
-    state = {
-        hasCameraPermission : null,
-        type : Camera.Constants.Type.back,
+    let image = await Expo.ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+      exif:true,
+    })
+    this.setState({chosenImage: image})
+    console.log(image)
+  }
+  _launcCameraAsync =async()=>{
+    let {status} = Expo.Permissions.askAsync(Expo.Permissions.CAMERA)
+    if(status !== 'granted'){
+      console.log("Camera permission Denied")
     }
+    let image = await Expo.ImagePicker.launchCameraAsync()
+    console.log(image)
+    this.setState({takenImage: image})
 
-    async componentDidMount(){
-        const {status} = await Permissions.askAsync(Permissions.CAMERA);
-        this.setState({ hasCameraPermission: status == 'granted'});
-    }
+    
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.paragraph}>
+         Photo
+        </Text>
+        <Button title="Launch Camera Roll" onPress={()=>this._launchCameraRollAsync()}/>
 
-    render(){
-        const {hasCameraPermission} = this.state;
-        if(hasCameraPermission === null){
-            return <View />;
-        }else if(hasCameraPermission === false){
-            return <Text>No access to camera</Text>
-        }else{
-            return(
-                <View style = {{ flex: 1 }}>
-                    <Camera style = {{ flex : 1 }}>
-                        <View
-                            style = {{
-                                flex : 1,
-                                backgroundColor: 'transparent',
-                                flexDirection: 'row',
-                            }}>
-                            <TouchableOpacity
-                                style = {{
-                                    flex: 0.1,
-                                    alignSelf: 'flex-end',
-                                    alignItems: 'center',
-                                }}
-                                
-                                onPress = {() => {
-                                    this.setState({
-                                        type: this.state.type === Camera.container.Type.back
-                                        ? Camera.Constants.Type.front
-                                        : Camera.Constants.Type.back,
-                                    });
-                                }}>
-                                <Text style = {{
-                                    fontSize: 18,
-                                    marginBottom: 10,
-                                    color: 'white' }}>
-                                {' '}Flip{' '}
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    </Camera>
-                </View>
-            );
-        }
-    }
+        {this.state.chosenImage && (<Image 
+        source={{uri:this.state.chosenImage.uri}} 
+        style={{
+          height:200,
+          width:200
+         }}/>)}
+      <Button title="Camera" onPress={()=> this._launcCameraAsync()}/>
+      {this.state.takenImage && (<Image 
+        source={{uri:this.state.takenImage.uri}} 
+        style={{
+          height:200,
+          width:200
+         }}/>)}
+      </View>
+      
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    },
+    paddingTop: Expo.Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#34495e',
+  },
 });
