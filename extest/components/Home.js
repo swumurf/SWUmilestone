@@ -99,16 +99,6 @@ render() {
     paddingBottom="30"
     >
   </Button>
-  <Button style = {styles.button}
-    onPress={() => {
-      this.props.navigation.navigate('Usercertificate')
-    }}
-    title="USERCERTIFICATE"
-    color="#999999"
-    accessibilityLabel="USERCERTIFICATE"
-    paddingBottom="30"
-    >
-  </Button>
 </View>
     
   );
