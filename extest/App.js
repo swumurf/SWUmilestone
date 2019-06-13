@@ -32,6 +32,7 @@ const AppNavigator=createStackNavigator({
   Main:Main,
   Managermain:Managermain,
   Usercertificate:Usercertificate
+  
 });
 
 class App extends React.Component {

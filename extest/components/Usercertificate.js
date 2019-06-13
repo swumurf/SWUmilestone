@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {Image,  Text, View, StyleSheet, Button } from 'react-native';
 import * as Expo from 'expo';
 
-
 export default class Usercertificate extends Component {
-  
   state = {
     chosenImage: null,
     takenImage:null
@@ -33,16 +31,15 @@ export default class Usercertificate extends Component {
     let image = await Expo.ImagePicker.launchCameraAsync()
     console.log(image)
     this.setState({takenImage: image})
-
-    
   }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.paragraph}>
          Photo
         </Text>
-        <Button title="Launch Camera Roll" onPress={()=>this._launchCameraRollAsync()}/>
+        <Button title="갤러리" onPress={()=>this._launchCameraRollAsync()}/>
 
         {this.state.chosenImage && (<Image 
         source={{uri:this.state.chosenImage.uri}} 
@@ -50,7 +47,8 @@ export default class Usercertificate extends Component {
           height:200,
           width:200
          }}/>)}
-      <Button title="Camera" onPress={()=> this._launcCameraAsync()}/>
+
+      <Button title="카메라" onPress={()=> this._launcCameraAsync()}/>
       {this.state.takenImage && (<Image 
         source={{uri:this.state.takenImage.uri}} 
         style={{
