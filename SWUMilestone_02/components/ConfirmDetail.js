@@ -16,7 +16,7 @@ export default class ConfirmDetail extends React.Component {
     render(){
     return (
         <View style = {styles.container}>
-           <View style={styles.homeview}>
+        <View style={styles.homeview}>
             <Button style = {styles.button} onPress={() => {
                 this.props.navigation.navigate('Main')}}
                 title="홈버튼" color="#999999"

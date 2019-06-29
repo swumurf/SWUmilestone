@@ -12,6 +12,7 @@ import Confirmplanner from './components/Confirmplanner'
 import Insertplanner1 from './components/Insertplanner1'
 import Insertplanner2 from './components/Insertplanner2'
 import Insertplanner3 from './components/Insertplanner3'
+import Insertplanner4 from './components/Insertplanner4'
 import Main from './components/Main'
 import Managermain from './components/Managermain'
 import Mypage from './components/Mypage'
@@ -30,6 +31,7 @@ const AppNavigator=createStackNavigator({
   Insertplanner1:Insertplanner1,
   Insertplanner2,Insertplanner2,
   Insertplanner3,Insertplanner3,
+  Insertplanner4,Insertplanner4,
   ConfirmDetail: ConfirmDetail,
   Main:Main,
   Managermain:Managermain,

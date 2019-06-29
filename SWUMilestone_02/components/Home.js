@@ -61,7 +61,12 @@ render() {
       <View style={styles.content}>
       <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
         <Text style={{fontSize:15}}> ID </Text>
-        <TextInput style={{borderBottomColor:'#000000',width:'70%',height:35,padding:5}} name="id"></TextInput>
+        <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
+            <TextInput style={styles.input} name="id"
+          ></TextInput>
+
+          
+      </View>
       </View>
       <View>
       <Text style={{fontSize:15}}> PASSWORD </Text>
@@ -69,36 +74,24 @@ render() {
       </View>
       
     </View>
-    <Button width='30%' color='#b75858' style={styles.button} title="로그인" paddingBottom="30"
-    onPress={()=>{
+
+    <View style={styles.horizontality}>
+      <TouchableOpacity style={styles.nextButton} onPress={()=>{
       _storeData();
       console.log('login onpress fuctionttt');
-          }}
-    >
+      this.props.navigation.navigate('Main')
+      }}>
+        <Text>로그인</Text></TouchableOpacity>
+    </View>
 
-  </Button>
-  
-  <Button style={styles.button}  
-    onPress={()=>{
+    <View style={styles.horizontality}>
+      <TouchableOpacity style={styles.nextButton} onPress={()=>{
       _retrieveData();
-    }}
-    title="SIGN IN"
-    color="#b75858"
-    accessibilityLabel="SIGN IN"
-    paddingBottom="30"
-    >
-  </Button>
-
-  <Button style={styles.button}
-    onPress={()=>{ 
-    this.props.navigation.navigate('Main')
-    }}
-    title="NAVIGATION"
-    color="#999999"
-    accessibilityLabel="NAVIGATION"
-    paddingBottom="30"
-    >
-  </Button>
+      console.log('회원가입 onpress fuctionttt');
+      this.props.navigation.navigate('Main')
+      }}>
+        <Text>회원가입</Text></TouchableOpacity>
+    </View>
 </View>
     
   );
@@ -129,11 +122,16 @@ const styles = StyleSheet.create({
     paddingRight:10,
     paddingBottom:30
   },
-  input:{
-    borderColor:'#000000',
-    width:'70%',
-    height:35,
-    padding:5
+  
+    input:{
+      height:20,
+      width:'70%',
+      borderColor:'#999999',
+      borderWidth:1,
+      margin:40,
+      padding:5,
+      textAlign:'center'
+    
   } 
   ,
   button:{
@@ -142,6 +140,13 @@ const styles = StyleSheet.create({
     borderColor:"#000000",
     fontSize:30,
     paddingBottom:30
-  }
+  },
+  nextButton:{
+    marginTop:60,
+    width:50,
+    backgroundColor:'#ffffff',
+    borderColor:"#000000",
+    fontSize:40,
+  },
   });
 
