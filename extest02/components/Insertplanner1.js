@@ -1,17 +1,28 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
 
+let loginInfo={
+    studentNum:'',
+    password:''
+};
+
 export default class Insertplanner1 extends React.Component {
+    
+
     constructor(props){
         super(props);
+        this.state={plan1:''};
+
         this.list={
-            title: 'ㅇㅇㅇ',
+            title: null,
             start: '2019.03',
             end: '2019.12',
             confirmImage: null,
-            detail: '소프트웨어중심대학 GURU1 수료하기.'
+            detail: null
         };
     }
+    
+
 
     render(){
     return (
@@ -28,24 +39,33 @@ export default class Insertplanner1 extends React.Component {
 
             <View style = {styles.horizontality}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
-            <TextInput style={styles.input} name="plan1"
-          ></TextInput>
+            <TextInput style={styles.input} placeholder='Enter new to do' name="plan1" 
+            onChangeText={(text)=>this.setState({plan1:text})}
 
-          
-      </View>       
-      </View>
-      <View style={styles.horizontality}>
-        <TouchableOpacity style={styles.nextButton} onPress={()=>{
-      this.props.navigation.navigate('Insertplanner2')
-      }}>
-        <Text>다음</Text></TouchableOpacity>
-     </View>
             
-
+            
+                
+        ></TextInput>
+    
+    
+        </View>       
+    </View>
+    <View style={styles.horizontality}>
+        <Button style={styles.nextButton} title="다음1" onPress={()=>{
+            console.log('plan1: '+this.state.plan1);
+        
+    this.props.navigation.navigate('Insertplanner2',{plan1:this.state.plan1});
+    }}  >
+    </Button>
+    </View>
+        
         
         </View>
+
     );
     }
+
+    
 }
 
 const styles = StyleSheet.create({

@@ -143,7 +143,7 @@ render() {
   <Button style={styles.button} title="관리자로 로그인하기"
     onPress={()=>{
       console.log('signin as a manager');
-      this.props.navigation.navigate('Planner1');
+      this.props.navigation.navigate('Insertplanner1');
           }}
     >
   </Button>

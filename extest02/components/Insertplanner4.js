@@ -1,51 +1,43 @@
 import React from 'react';
-import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
+import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage,ScrollView} from 'react-native';
 
 
 export default class Insertplanner4 extends React.Component {
-    render(){
-
+  constructor(props){
+    super(props);
+    const {navigation}=this.props;
+    this.state={plan1:navigation.getParam('plan1'),plan2:navigation.getParam('plan2'),plan3:navigation.getParam('plan3')};
+  }
+  
+  render(){
+    console.log('screen4 plan1: '+this.state.plan1);
+    console.log('screen4 plan2:' + this.state.plan2);
+    console.log('screen4 plan3: '+ this.state.plan3);
         return (
-          <View style={styles.container}>
-            <View>
-            <View style={styles.horizontality}>
-            <Text style={styles.titleFont}>제목</Text></View>
-            <View style={styles.horizontality}>
+          <View>
+            <ScrollView>
+            
+            <Text style={styles.titleFont}>제목</Text>
+
             <TextInput style={styles.input} name="title"></TextInput>
-            </View>
-            </View>
-
-            <View>
-            <View style={styles.horizontality}>
-            <Text style={styles.titleFont}>시작 날짜</Text></View>
-            <View style={styles.horizontality}>
+            
+            
+            <Text style={styles.titleFont}>시작 날짜</Text>
+            
             <TextInput style={styles.input} name="startday"></TextInput>
-            </View>
-            </View>
-
-            <View>
-            <View style={styles.horizontality}>
-            <Text style={styles.titleFont}>종료 날짜</Text></View>
-            <View style={styles.horizontality}>
+            <Text style={styles.titleFont}>종료 날짜</Text>
+            
             <TextInput style={styles.input} name="endday"></TextInput>
-            </View>
-            </View>
-
-            <View>
-            <View style={styles.horizontality}>
-            <Text style={styles.titleFont}>증빙 자료 입력</Text>
-            <View style={styles.horizontality}>
-              <TouchableOpacity style={styles.nextButton} onPress={() => {
-                this.props.navigation.navigate('Usercertificate')}}>
-              <Text>증빙자료 입력하기</Text>
-                </TouchableOpacity>
-                </View>
-                </View>
-            </View>
-              
+            
 
           
-
+            <Text style={styles.titleFont}>증빙 자료 입력</Text>
+            
+              <TouchableOpacity style={styles.nextButton} onPress={() => {
+                this.props.navigation.navigate('Main')}}>
+              <Text>플래너 저장</Text>
+                </TouchableOpacity>
+          </ScrollView>
             </View>
       );
       }
@@ -133,7 +125,7 @@ const styles = StyleSheet.create({
     borderWidth:1,
     margin:40,
     width:'80%',
-    height:'15%',
+    height:'20%',
     padding:5,
     textAlign:'center'
   } 

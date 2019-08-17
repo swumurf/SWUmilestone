@@ -11,10 +11,6 @@ import Profile from './components/Profile'
 import Mainpage from './components/Mainpage'
 import Signup from './components/Signup'
 import Upload from './components/Upload'
-import Planner1 from './components/Planner1'
-import Planner2 from './components/Planner2'
-import Planner3 from './components/Planner3'
-import Planner4 from './components/Planner4'
 import Password from './components/Password'
 import Mypage from './components/Mypage'
 import ManagerMilage from './components/ManagerMilage'
@@ -23,6 +19,11 @@ import ManagerLogin from './components/ManagerLogin'
 import ManagerCertificate from './components/ManagerCertificate'
 import ConfirmDetail from './components/ConfirmDetail'
 import ConfirmPlanner from './components/ConfirmPlanner'
+import Insertplanner1 from'./components/Insertplanner1'
+import Insertplanner2 from'./components/Insertplanner2'
+import Insertplanner3 from'./components/Insertplanner3'
+import Insertplanner4 from'./components/Insertplanner4'
+
 
 
 
@@ -43,10 +44,10 @@ const AppNavigator=createStackNavigator({
   ManagerMilage:ManagerMilage,
   Mypage:Mypage,
   Password:Password,
-  Planner1:Planner1,
-  Planner2:Planner2,
-  Planner3:Planner3,
-  Planner4:Planner4,
+  Insertplanner1:Insertplanner1,
+  Insertplanner2:Insertplanner2,
+  Insertplanner3:Insertplanner3,
+  Insertplanner4:Insertplanner4,
   Upload:Upload
 });
 
