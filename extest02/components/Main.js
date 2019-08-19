@@ -5,7 +5,7 @@ export default class Main extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      id : 'SN2015111573',
+      id : '',
       mileage: 1000,
       gradGoal: '취업하기',
       curMonth: 5

@@ -38,13 +38,14 @@ _storeData=async()=>{
 /*Home 클래스 시작 */
 export default class Home extends React.Component {
 
-state={
-  studentNum:'',
-  password:''
-}
 
+constructor(props){
+  super(props);
+  const {navigation}=this.props;
+  this.state={studentNum:'', password:''};
+}
 /* 데이터 서버로 전송해서 서버 response 출력 함수*/
-postData=async(str)=>{
+postData=async(studentNum,password)=>{
   try{
     console.log('fetch function 진입');
     let res=await fetch('http://52.78.119.153:3000/userInfo/signin',{
@@ -55,7 +56,8 @@ postData=async(str)=>{
       'Content-Type':'application/json'
     },
     body:JSON.stringify({
-      str
+      studentNum:this.state.studentNum,
+      password:this.state.password
     })
     });
     
@@ -108,13 +110,13 @@ render() {
       <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
         <Text style={{fontSize:15}}> ID </Text>
         <TextInput style={styles.input} name="id"
-          onChangeText={this.handleEmail}
+        onChangeText={(text)=>this.setState({studentNum:text})}
         ></TextInput>
       </View>
       <View>
       <Text style={{fontSize:15}}> 비밀번호 </Text>
         <TextInput style={styles.input} name="password"
-        onChangeText={this.handlePassword}
+        onChangeText={(text)=>this.setState({password:text})}
         ></TextInput>
       </View>
       
@@ -122,8 +124,7 @@ render() {
     <Button style={styles.button} title="로그인"
     onPress={()=>{
       _storeData();
-      this.login(this.state.studentNum,this.state.password);
-      console.log('login onpress fuction');
+      this.postData(this.state.studentNum,this.state.password);
       this.props.navigation.navigate('Mainpage');
           }}
     >

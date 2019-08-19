@@ -108,7 +108,6 @@ postData=async(studentNum,password)=>{
 
             <View style={styles.horizontality}>
               <TouchableOpacity style={styles.nextButton} onPress={() => {
-                this.postData(this.state.plan1,this.state.plan2);
                 this.props.navigation.navigate('Insertplanner4', {plan1:this.state.plan1, plan2:this.state.plan2, plan3:this.state.plan3})}
               }
                 >
