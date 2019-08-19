@@ -5,7 +5,6 @@ Title: Navigator index in App.js / SWUMURF_SWU Milage Project
  */
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
-import {SQLite} from 'expo';
 import Home from './components/Home'
 import Profile from './components/Profile'
 import Mainpage from './components/Mainpage'
@@ -57,15 +56,6 @@ class App extends React.Component {
   }
 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 /*화면전환 기본 네비게이터 export*/ 
 export default createAppContainer(AppNavigator);

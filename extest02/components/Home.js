@@ -1,7 +1,7 @@
 /**
 date: May 17, 2019~
 Author: Ji yoon, Park
-Title: Navigator function, importing SQLite, and async storage using react-native expo / SWUMURF_SWU Milage Project
+Title: Navigator function, importing MySQL, and async storage using react-native expo / SWUMURF_SWU Milage Project
 Login.js 
 */
 
@@ -99,23 +99,22 @@ update(){
 
 render() {
   return (
+    /*
+    // ~08/19/2019 Home.js
     <View style={styles.container}>
       <View style={styles.content}>
         <Text style={{fontSize:20,paddingBottom:20}}>로그인 </Text>
       </View>
-
-
-    
       <View style={styles.content}>
       <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
         <Text style={{fontSize:15}}> ID </Text>
-        <TextInput style={styles.input} name="id"
+        <TextInput style={styles.input} name="id" placeholder="INSERT ID" placeholderTextColor="blue"
         onChangeText={(text)=>this.setState({studentNum:text})}
         ></TextInput>
       </View>
       <View>
       <Text style={{fontSize:15}}> 비밀번호 </Text>
-        <TextInput style={styles.input} name="password"
+        <TextInput style={styles.input} name="password" placeholder="INSERT PASS" placeholderTextColor="blue"
         onChangeText={(text)=>this.setState({password:text})}
         ></TextInput>
       </View>
@@ -129,14 +128,11 @@ render() {
           }}
     >
 
-  </Button>
-  <Button style={styles.button} title="회원 가입"
+  
+  <Button style={styles.button} title="회원가입"
     onPress={()=>{
-      //_storeData();
-      //this.login(this.state.email,this.state.password);
-      console.log('signup onpress fuction');
-     // this.props.navigation.navigate('Signup');
-          }}
+    console.log('signup');
+    this.props.navigation.navigate('Signup');}}
     >
 
   </Button>
@@ -144,30 +140,55 @@ render() {
   <Button style={styles.button} title="관리자로 로그인하기"
     onPress={()=>{
       console.log('signin as a manager');
-      this.props.navigation.navigate('Insertplanner1');
-          }}
+      this.props.navigation.navigate('Insertplanner1');}}
     >
-  </Button>
-
-  <Button style={styles.button} title="회원가입"
-    onPress={()=>{
-    console.log('signup');
-    this.props.navigation.navigate('Signup');
-          }}
-    >
-  </Button>
-</View>
+    </Button>
+    </Button>
+  </View>*/
+  <View style = {styles.container}>
+    <View style = {styles.logColumn}>
+      <View style = {styles.logRow}>
+        <Text style={styles.logText}> 아이디 </Text>
+        <TextInput style={styles.input} name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="blue" 
+          onChangeText={(text)=>this.setState({studentNum:text})}></TextInput>
+      </View>
+      <View style = {styles.logRow}>
+        <Text style={styles.logText}> 비밀번호 </Text>
+        <TextInput style={styles.input} name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="blue" 
+          onChangeText={(text)=>this.setState({password:text})}></TextInput>
+      </View>
+    </View>
+  </View>
   );
-}
-}
+  }
+  }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
+
+  logColumn:{
+    backgroundColor: '#cccccc',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    padding: 15,
+  },
+
+  logRow: {
+    backgroundColor: '#cccccc',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+  },
+
+  logText:{
+    fontSize: 20,
+    padding: 5,
+  },
+
   header:{
     width:'100%',
     height:'5%',
@@ -187,12 +208,11 @@ const styles = StyleSheet.create({
   },
   input:{
     borderColor:'#000000',
-    width:100,
-    height:40,
     padding:5,
-    textAlign:'center'
-  } 
-  ,
+    textAlign:'center',
+    fontSize: 15,
+  },
+
   button:{
     width:'400',
     color:"#999999",

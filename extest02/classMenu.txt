@@ -1,0 +1,62 @@
+1. App.js - 네비게이션 클래스 선언 및 네비게이터 인덱스 설정 - 스플래쉬 페이지?
+2. 
+3. ConfirmDetail.js - 상세 확인 페이지
+4, ConfirmPlanner.js - 플래너 확인 페이지
+5. Home.js - 네비게이터 함수, DB연결, Async 데이터 적재 및 로그인, 회원가입, 관리자 모드 메인 화면
+6. InsertPlanner1.js - 플래너 입력 페이지 1 - 연간 추진 계획 입력 페이지
+7. InsertPlanner2.js - 플래너 입력 페이지 2 - 월 선택 페이지
+8. InsertPlanner3.js - 플래너 입력 페이지 3 - 세부 항목 선택 페이지
+9. InsertPlanner4.js - 플래너 입력 페이지 4 - 상세 내용 입력 페이지
+10.InsertYearorMonth - 플래너 입력 페이지 0 - 학년 및 월 / 년 버튼 선택 페이지
+12. Main.js - 사용자 메인 페이지
+13. MainPage.js - 삭제
+13. ManagerCertificate.js - 관리자 증빙 서류 인증
+14. ManagerLogin.js - 관리자 로그인 페이지
+15. ManagerMain.js - 관리자 메인 페이지, 검색 창, 학번, 상세 내용, 날짜 등 날짜별 정렬 상세 활동 리스트
+16. ManagerMilage.js - 마일리지 주는 페이지
+17. Mypage.js - 회원 마이페이지
+18. Password.js - 비밀번호 변경 
+19. Profile.js - ?? 서버 통신 ??
+20. Signup.js - 회원가입 페이지
+21. 
+22. Usercertificate.js - 증빙 자료 제출 페이지
+
+------------------------------------------------------
+
+- Front Flow -
+** 회원가입하기 App.js -> Home.js -> Sighup.js
+** 관리자로 로그인 하기 App.js -> Home.js -> ManagerLogin.js 	-> ManagerMain.js 
+								-> ManagerMain.js -> 날짜별 정렬 상세 활동 리스트 -> ManagerCertificate.js -> 인증하기 버튼 -> ManagerMilage.js -> 확인 버튼 -> ManagerMain.js
+								-> ManagerMain.js -> 날짜별 정렬 상세 활동 리스트 -> ManagerCertificate.js -> 인증 거부 버튼 -> User와 연결하여 해당 User에게 다시 인증하라고 알람 -> ManagerMain.js
+								-> ManagerMain.js -> 날짜별 정렬 상세 활동 리스트 -> ManagerCertificate.js -> 나가기 버튼 -> ManagerMain.js
+** 학생 로그인 	App.js -> Home.js -> 서버 사용자 연결 -> 로그인 실패 -> 팝업창 실행
+		App.js -> Home.js -> 서버 사용자 연결 -> 로그인 성공 -> Main.js	-> 마이페이지 버튼 -> MyPage.js -> 비밀번호 변경 -> Password.js -> 저장 버튼 -> Main.js
+										-> 마이페이지 버튼 -> MyPage.js -> 공지사항 -> 소중대 홈페이지로 연결
+										-> 마일스톤 목표 및 플래너 입력하기 -> InsertYearorMonth-> 학년 선택 및 월간 페이지 -> InsertPlanner2.js -> InsertPlanner3.js -> InsertPlanner4.Js -> 저장 -> 서버요청 & DB 연결 -> ConfirmDetail.js
+										-> 마일스톤 목표 및 플래너 입력하기 -> InsertYearorMonth-> 학년 선택 및 년간 페이지 -> InsertPlanner1.js -> 서버 & DB요청 -> Main.js
+										-> 마일스톤 활동 내역 확인 및 증빙자료 제출하기 -> ConfimPlanner.js -> ConfirmDetail.js -> 증빙자료 입력 -> Usercertification.js
+------------------------------------------------------
+
+- 현재 우리가 개발한거 Flow -
+
+* App.js -> Home.js -> 로그인 -> MainPage.js
+
+* App.js -> Home.js -> 회원가입 -> Signup.js -> Log만 찍힘
+
+* App.js -> Home.js -> 관리자로 로그인 -> InsertPlanner1.js -> InsertPlanner2.js -> InsertPlanner3.js -> InsertPlanner4.js -> 서버 통신
+
+* App.js -> Home.js -> 회원가입 -> Signup.js
+
+---------------------------------------------------------
+
+- 해야할 Flow -
+
+* App.js -> Home.js -> 로그인 -> 서버통신 디버그 용 페이지
+
+* App.js -> Home.js -> 회원가입 -> Sighup.js -> Home.js
+
+* App.js -> Home.js -> 관리자로 로그인 하기 -> ManagerLogin.js
+
+* App.js -> Home.js -> 디버그용 로그인 -> MainPage.js
+
+* 
