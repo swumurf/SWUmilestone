@@ -127,7 +127,7 @@ render() {
     <View>
       <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
       console.log('signin as a manager');
-      this.props.navigation.navigate('ManagerMain');}}>
+      this.props.navigation.navigate('Insertplanner1');}}>
         <Text style={styles.managerText}>관리자로 로그인하기</Text>
       </TouchableOpacity>
     </View>
