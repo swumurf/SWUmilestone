@@ -104,13 +104,15 @@ render() {
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 아이디 </Text>
-        <TextInput style={styles.input} name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="blue" 
-          onChangeText={(text)=>this.setState({studentNum:text})}></TextInput>
+        <View style={styles.input} ><TextInput name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="blue" 
+          onChangeText={(text)=>this.setState({studentNum:text})}></TextInput></View>
+        
       </View>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 비밀번호 </Text>
-        <TextInput style={styles.input} name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="blue" 
-          onChangeText={(text)=>this.setState({password:text})}></TextInput>
+        <View style={styles.input}><TextInput  name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="blue" 
+          onChangeText={(text)=>this.setState({password:text})}></TextInput></View>
+        
       </View>
     </View>
     <View style = {styles.buttonView}>
@@ -160,7 +162,8 @@ const styles = StyleSheet.create({
   logRow: {
     backgroundColor: '#cccccc',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    //justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'stretch',
   },
 
@@ -215,6 +218,7 @@ const styles = StyleSheet.create({
     padding:5,
     textAlign:'center',
     fontSize: 15,
+    alignItems: 'flex-end',
   },
   });
 
