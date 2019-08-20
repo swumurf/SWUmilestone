@@ -41,10 +41,6 @@ export default class Insertplanner1 extends React.Component {
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
             <TextInput style={styles.input} placeholder='Enter new to do' name="plan1" 
             onChangeText={(text)=>this.setState({plan1:text})}
-
-            
-            
-                
         ></TextInput>
     
     
@@ -53,8 +49,7 @@ export default class Insertplanner1 extends React.Component {
     <View style={styles.horizontality}>
         <Button style={styles.nextButton} title="다음1" onPress={()=>{
             console.log('plan1: '+this.state.plan1);
-        
-    this.props.navigation.navigate('Insertplanner2',{plan1:this.state.plan1});
+            this.props.navigation.navigate('Upload',{plan1:this.state.plan1});
     }}  >
     </Button>
     </View>

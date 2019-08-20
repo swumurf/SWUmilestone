@@ -22,7 +22,7 @@ export default class Mainpage extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{alignItems: 'flex-end', paddingBottom: 10, paddingRight: 10,}}>
-          <Button title="마이 페이지"
+          <Button color='#cccccc' title="마이 페이지"
             onPress={()=>{
             console.log('Mypage');
             this.props.navigation.navigate('Mypage');}}
