@@ -21,6 +21,14 @@ export default class Mainpage extends React.Component {
   render(){
     return (
       <View style={styles.container}>
+        <View style={{alignItems: 'flex-end', paddingBottom: 10, paddingRight: 10,}}>
+          <Button title="마이 페이지"
+            onPress={()=>{
+            console.log('Mypage');
+            this.props.navigation.navigate('Mypage');}}
+          >
+          </Button>
+        </View>
         <View style={styles.titleView}>
           <Text style={styles.titleText}>학번       {this.state.id}   님</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
@@ -35,10 +43,20 @@ export default class Mainpage extends React.Component {
         <Text style={styles.listText}>리스트 항목1</Text>
         <Text style={styles.listText}>리스트 항목2</Text>
         <Text style={styles.listText}>리스트 항목3</Text>
-    </View>
+        </View>
+        <View style={{paddingBottom: 10}}>
+          <Button title ="활동 내역 확인 및 서류 제출"
+            onPress={()=>{
+            console.log('활동 내역 확인 및 서류 제출');
+            this.props.navigation.navigate('ConfirmPlanner');}}>
+          </Button>
+          <Button title ="마일스톤 플래너 입력"
+            onPress={()=>{
+            console.log('마일스톤 플래너 입력');
+            this.props.navigation.navigate('InsertYearorMonth');}}
+          ></Button>
+        </View>
       </View>);}
-
-
 }
 
 const styles = StyleSheet.create({

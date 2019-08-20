@@ -22,6 +22,7 @@ import Insertplanner1 from'./components/Insertplanner1'
 import Insertplanner2 from'./components/Insertplanner2'
 import Insertplanner3 from'./components/Insertplanner3'
 import Insertplanner4 from'./components/Insertplanner4'
+import InsertYearorMonth from './components/InsertYearorMonth'
 
 
 
@@ -47,7 +48,8 @@ const AppNavigator=createStackNavigator({
   Insertplanner2:Insertplanner2,
   Insertplanner3:Insertplanner3,
   Insertplanner4:Insertplanner4,
-  Upload:Upload
+  Upload:Upload,
+  InsertYearorMonth:InsertYearorMonth,
 });
 
 class App extends React.Component {
