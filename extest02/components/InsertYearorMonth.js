@@ -56,19 +56,20 @@ export default class InsertYearorMonth extends React.Component {
         </View>
         <View style={{paddingTop: 30}}>
           <Button title="연간 추진 계획"
-            onPress={()=>{
-            console.log('연간 추진 계획 선택 ' + this.state.value);
-            this.props.navigation.navigate('Insertplanner1');
-            }}
+            onPress={() =>{
+              {(this.state.value  === null) 
+                ? (this._gradenullAlter())
+                : (console.log('연간 추진 계획 ' + this.state.value), 
+                  this.props.navigation.navigate('Insertplanner2'));
+              }}}
           ></Button>
           <Button title="월간 추진 계획"
             onPress={() =>{
             {(this.state.value  === null) 
               ? (this._gradenullAlter())
-              : (console.log('null아니당'), this.props.navigation.navigate('Insertplanner1'));
-            }
-            }}
-
+              : (console.log('월간 추진 계획 ' + this.state.value), 
+                this.props.navigation.navigate('Insertplanner1'));
+            }}}
             ></Button>
         </View>
       </View>); }
