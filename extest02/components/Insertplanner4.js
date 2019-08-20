@@ -14,7 +14,7 @@ export default class Insertplanner4 extends React.Component {
   postData=async(plan1,plan2,plan3,startDate,expireDate,title)=>{
     try{
       console.log('insert planner3 fetch function 진입');
-      let res=await fetch('http://13.125.153.65:3000/user/signin',{
+      let res=await fetch('http://13.125.153.65:3000/planner/planner',{
       
       method:'POST',
       headers: {
@@ -22,12 +22,14 @@ export default class Insertplanner4 extends React.Component {
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
-        plan1:this.state.plan1,
-        plan2:this.state.plan2,
-        plan3:this.state.plan3,
-        title:this.state.title,
-        startDate:this.state.startDate,
-        expireDate:this.state.expireDate
+        studentIdx:1,
+        activityName:this.state.title,
+        activityYear:2019,
+        activityMonth:this.state.plan2,
+        activityDetailNum:this.state.plan3,
+        activityStartDate:this.state.startDate,
+        activityExpireDate:this.state.expireDate,
+        activityContain:'sdf'
       })
       });
       
