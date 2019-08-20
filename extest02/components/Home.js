@@ -7,6 +7,7 @@ Login.js
 
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
+import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 let loginInfo={
   studentNum:'',
@@ -99,52 +100,6 @@ update(){
 
 render() {
   return (
-    /*
-    // ~08/19/2019 Home.js
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={{fontSize:20,paddingBottom:20}}>로그인 </Text>
-      </View>
-      <View style={styles.content}>
-      <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
-        <Text style={{fontSize:15}}> ID </Text>
-        <TextInput style={styles.input} name="id" placeholder="INSERT ID" placeholderTextColor="blue"
-        onChangeText={(text)=>this.setState({studentNum:text})}
-        ></TextInput>
-      </View>
-      <View>
-      <Text style={{fontSize:15}}> 비밀번호 </Text>
-        <TextInput style={styles.input} name="password" placeholder="INSERT PASS" placeholderTextColor="blue"
-        onChangeText={(text)=>this.setState({password:text})}
-        ></TextInput>
-      </View>
-      
-    </View>
-    <Button style={styles.button} title="로그인"
-    onPress={()=>{
-      _storeData();
-      this.postData(this.state.studentNum,this.state.password);
-      this.props.navigation.navigate('Mainpage');
-          }}
-    >
-
-  
-  <Button style={styles.button} title="회원가입"
-    onPress={()=>{
-    console.log('signup');
-    this.props.navigation.navigate('Signup');}}
-    >
-
-  </Button>
-  
-  <Button style={styles.button} title="관리자로 로그인하기"
-    onPress={()=>{
-      console.log('signin as a manager');
-      this.props.navigation.navigate('Insertplanner1');}}
-    >
-    </Button>
-    </Button>
-  </View>*/
   <View style = {styles.container}>
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
@@ -157,6 +112,31 @@ render() {
         <TextInput style={styles.input} name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="blue" 
           onChangeText={(text)=>this.setState({password:text})}></TextInput>
       </View>
+    </View>
+    <View style = {styles.buttonView}>
+      <Button title="로그인"
+        onPress={()=>{
+        _storeData();
+        this.postData(this.state.studentNum,this.state.password);
+        this.props.navigation.navigate('Mainpage');}}></Button>
+      <Button title="회원가입" 
+        onPress={()=>{
+          console.log('signup');
+          this.props.navigation.navigate('Signup');}}></Button>
+    </View>
+    <View>
+      <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
+      console.log('signin as a manager');
+      this.props.navigation.navigate('Insertplanner1');}}>
+        <Text style={styles.managerText}>관리자로 로그인하기</Text>
+      </TouchableOpacity>
+    </View>
+    <View>
+    <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
+      console.log('LogIn for Debug');
+      this.props.navigation.navigate('Mainpage');}}>
+        <Text style={styles.managerText}>디버그용 로그인</Text>
+      </TouchableOpacity>
     </View>
   </View>
   );
@@ -189,6 +169,28 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 
+  buttonView:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 15,
+    paddingHorizontal: 50,
+    alignSelf: 'stretch',
+    
+  },
+
+  button:{
+    alignItems: "stretch",
+    color:"#999999",
+    fontSize:30,
+    paddingBottom:80,
+    paddingHorizontal:200,
+  },
+
+  managerText:{
+    padding: 15,
+    fontSize: 15,
+  },
+
   header:{
     width:'100%',
     height:'5%',
@@ -200,25 +202,19 @@ const styles = StyleSheet.create({
     height:'18%',
     justifyContent:'center'
   },
+  
   content:{
     width:'100%',
     paddingLeft:10,
     paddingRight:10,
     paddingBottom:30
   },
+
   input:{
     borderColor:'#000000',
     padding:5,
     textAlign:'center',
     fontSize: 15,
   },
-
-  button:{
-    width:'400',
-    color:"#999999",
-    borderColor:"#000000",
-    fontSize:30,
-    paddingBottom:30
-  }
   });
 
