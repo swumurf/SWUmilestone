@@ -6,8 +6,7 @@ Login.js
 */
 
 import React from 'react';
-import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
+import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
 
 let loginInfo={
   studentNum:'',
@@ -35,6 +34,14 @@ _storeData=async()=>{
     }
   }
 
+/**Alert */
+_gradenullAlter=()=>{
+  Alert.alert('', '로그인 정보가 맞지 않습니다', 
+  [{
+    text: '확인', onPress: ()=> console.log('확인')
+  }]);
+
+}
 
 /*Home 클래스 시작 */
 export default class Home extends React.Component {
@@ -43,13 +50,13 @@ export default class Home extends React.Component {
 constructor(props){
   super(props);
   const {navigation}=this.props;
-  this.state={studentNum:'', password:''};
+  this.state={studentNum:'', password:'',resStatus:''};
 }
 /* 데이터 서버로 전송해서 서버 response 출력 함수*/
 postData=async(studentNum,password)=>{
   try{
     console.log('fetch function 진입');
-    let res=await fetch('http://52.78.119.153:3000/userInfo/signin',{
+    let res=await fetch('http://13.125.153.65:3000/user/signin',{
     
     method:'POST',
     headers: {
@@ -62,13 +69,14 @@ postData=async(studentNum,password)=>{
     })
     });
     
-    res=await res;
+   
+    res=await res.json();
     console.log("---------------response line1 까지 됨-------------");
     
     console.log(res);
-    console.log("---------------response line2 까지 됨-------------");
-    console.log(res._bodyText);
     console.log("---------------response line3 까지 됨-------------");
+  this.setState({resStatus:res.status});
+  return res;
   }catch(error){
     console.error(error);
   }
@@ -119,8 +127,23 @@ render() {
       <Button title="로그인"
         onPress={()=>{
         _storeData();
-        this.postData(this.state.studentNum,this.state.password);
-        this.props.navigation.navigate('Mainpage');}}></Button>
+        this.postData(this.state.studentNum,this.state.password).then(res=>{
+         
+          console.log('res.body.data'+res.data['studentIdx']);
+          if(res.status=='200'){
+
+             console.log('res.status 200');
+             this.props.navigation.navigate('Mainpage'); //Mainpage로 navigate
+           }else{
+            console.log('res.status 400');
+            _gradenullAlter();
+           }
+        }
+        );
+       
+      
+      }
+        }></Button>
       <Button title="회원가입" 
         onPress={()=>{
           console.log('signup');

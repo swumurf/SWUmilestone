@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage,Picker} from 'react-native';
+import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage,Picker} from 'react-native';
 
 
 export default class Signup extends React.Component {
@@ -8,7 +8,20 @@ export default class Signup extends React.Component {
   constructor(props){
     super(props);
     const {navigation}=this.props;
-    this.state={studentNum:'',password:'',password2:'',studentName:'',major1:'',major2:'',major3:'',supervisor:'',phoneNum:'',email:'',mileage:'',goal_graduate:'',emailrear:''};
+    this.state={studentNum:'',password:'',password2:'',studentName:'',major1:'',major2:'',major3:'',supervisor:'',
+    phoneNum:'',email:'',mileage:'',goal_graduate:'',res:''};
+  }
+  /**Alert */
+  _gradenullAlter=()=>{
+    Alert.alert('', '비밀번호를 확인해주세요', 
+    [{
+      text: '확인', onPress: ()=> console.log('확인')
+    }]);
+    console.log('null이당~');
+  }
+
+  _showAlter=()=>{
+    Alert.alert()
   }
 
   postData=async()=>{
@@ -43,6 +56,8 @@ export default class Signup extends React.Component {
       console.log("---------------response line2 까지 됨-------------");
       console.log(res._bodyText);
       console.log("---------------response line3 까지 됨-------------");
+     // this.setState({res:res.status});
+      //console.log('-----------res.setState : ' + this.state.res);
     }catch(error){
       console.error(error);
     }
@@ -311,13 +326,15 @@ export default class Signup extends React.Component {
               console.log('major2:'+this.state.major2);
               console.log('major3:'+this.state.major3);
               if(this.state.password!=this.state.password2){
-
+                    this._gradenullAlter();
               }else{
                 this.postData();
+                
+              
                 this.props.navigation.navigate('Mainpage');}}
               }
              >
-              <Text style={styles.managerText}>관리자로 로그인하기</Text>
+              <Text style={styles.managerText}>회원가입</Text>
             </TouchableOpacity>
           </View>
 
