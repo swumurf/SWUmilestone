@@ -8,7 +8,7 @@ export default class Signup extends React.Component {
   constructor(props){
     super(props);
     const {navigation}=this.props;
-    this.state={studentNum:'',password:'',studentName:'',major1:'',major2:'',major3:'',supervisor:'',phoneNum:'',email:'',mileage:'',goal_graduate:''};
+    this.state={studentNum:'',password:'',password2:'',studentName:'',major1:'',major2:'',major3:'',supervisor:'',phoneNum:'',email:'',mileage:'',goal_graduate:'',emailrear:''};
   }
 
   postData=async()=>{
@@ -69,6 +69,11 @@ export default class Signup extends React.Component {
               <Text style={styles.logText}> *비밀번호 </Text>
               <TextInput style={styles.input} name="password" placeholder="비밀번호를 입력해주세요" placeholderTextColor="#99A3A4" 
                 onChangeText={(text)=>this.setState({password:text})}></TextInput>
+            </View>
+            <View style = {styles.logRow}>
+              <Text style={styles.logText}> *비밀번호 확인</Text>
+              <TextInput style={styles.input} name="password" placeholder="비밀번호를 다시 입력해주세요" placeholderTextColor="#99A3A4" 
+                onChangeText={(text)=>this.setState({password2:text})}></TextInput>
             </View>
             <View style = {styles.logRow}>
               <Text style={styles.logText}>  제1전공 </Text>
@@ -282,11 +287,15 @@ export default class Signup extends React.Component {
               <Text style={styles.logText}>  전화번호 </Text>
               <TextInput style={styles.input} name="phoneNum" placeholder="전화번호를 입력해주세요" placeholderTextColor="#99A3A4" 
                 onChangeText={(text)=>this.setState({phoneNum:text})}></TextInput>
+               
             </View>
             <View style = {styles.logRow}>
               <Text style={styles.logText}>  Email </Text>
               <TextInput style={styles.input} name="Email" placeholder="이메일을 입력해주세요" placeholderTextColor="#99A3A4" 
-                onChangeText={(text)=>this.setState({Email:text})}></TextInput>
+                onChangeText={(text)=>this.setState({email:text})}></TextInput>
+    
+                
+
             </View>
             <View style = {styles.logRow}>
               <Text style={styles.logText}>  졸업 후 목표 </Text>
@@ -301,9 +310,13 @@ export default class Signup extends React.Component {
               console.log('major1:'+this.state.major1);
               console.log('major2:'+this.state.major2);
               console.log('major3:'+this.state.major3);
-              
-           // this.postData();
-            this.props.navigation.navigate('Mainpage');}}>
+              if(this.state.password!=this.state.password2){
+
+              }else{
+                this.postData();
+                this.props.navigation.navigate('Mainpage');}}
+              }
+             >
               <Text style={styles.managerText}>관리자로 로그인하기</Text>
             </TouchableOpacity>
           </View>
