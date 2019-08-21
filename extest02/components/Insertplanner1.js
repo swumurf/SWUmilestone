@@ -20,33 +20,34 @@ export default class Insertplanner1 extends React.Component {
         };
     }
 
-    postData=async(goal1,goal2,goal3,goal4,activityYear)=>{
-        console.log(goal1);
-        // try{
-        //   console.log('insert 년간 플래너 fetch function 진입');
-        //   let res=await fetch('http://13.125.153.65:3000/planner/plannerYear',{
+    postData=async(goal1, goal2, goal3, goal4)=>{
+        try{
+          console.log('insert 년간 플래너 fetch function 진입');
+          let res=await fetch('http://13.125.153.65:3000/planner/plannerYear',{
           
-        //   method:'POST',
-        //   headers: {
-        //     Accept: 'application/json',
-        //     'Content-Type':'application/json'
-        //   },
-        //   body:JSON.stringify({
-        //     activityYear:this.state.activityYear,
-        //     goal1: this.state.goal1,
-        //     goal2: this.state.goal2,
-        //     goal3: this.state.goal3,
-        //     goal4: this.state.goal4,
-        //   })});
-        //   res=await res;
-        //   console.log("---------------response line1 까지 됨-------------");
-        //   console.log(res);
-        //   console.log("---------------response line2 까지 됨-------------");
-        //   console.log(res._bodyText);
-        //   console.log("---------------response line3 까지 됨-------------");
-        // }catch(error){
-        //   console.error(error);
-        // }
+          method:'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+            studentIdx: 1,
+            goal1: this.state.goal1,
+            goal2: this.state.goal2,
+            goal3: this.state.goal3,
+            goal4: this.state.goal4,
+          })
+        });
+
+          res=await res;
+          console.log("---------------response line1 까지 됨-------------");
+          console.log(res);
+          console.log("---------------response line2 까지 됨-------------");
+          console.log(res._bodyText);
+          console.log("---------------response line3 까지 됨-------------");
+        }catch(error){
+          console.error(error);
+        }
       }
 
       _goalSelect=()=>{
@@ -94,7 +95,7 @@ export default class Insertplanner1 extends React.Component {
     <View style={styles.horizontality}>
         <Button style={styles.nextButton} title="플래너 저장" onPress={()=>{
             (this._goalSelect());
-            (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4, this.state.activityYear));
+            (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
             this.props.navigation.navigate('Mainpage');
     }}  >
     </Button>
