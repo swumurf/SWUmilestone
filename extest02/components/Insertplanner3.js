@@ -6,7 +6,10 @@ export default class Insertplanner3 extends React.Component {
   constructor(props){
     super(props);
     const {navigation}=this.props;
-    this.state={plan1:navigation.getParam('plan1'),plan2:navigation.getParam('plan2'),plan3:''};
+    this.state={
+      activityYear:navigation.getParam('activityYear'),
+      activityMonth:navigation.getParam('activityMonth'),
+      activityDetailNum:''};
   }
 
   /* 데이터 서버로 전송해서 서버 response 출력 함수*/
@@ -21,8 +24,8 @@ postData=async(studentNum,password)=>{
       'Content-Type':'application/json'
     },
     body:JSON.stringify({
-      studentNum:this.state.plan1,
-      password:this.state.plan2
+      studentNum:this.state.activityYear,
+      password:this.state.activityMonth
     })
     });
     
@@ -41,74 +44,76 @@ postData=async(studentNum,password)=>{
   render(){
       
       
-      console.log('screen3 plan1: '+this.state.plan1);
-      console.log('screen3 plan2:' + this.state.plan2);
+      console.log('screen3 activityYear: '+this.state.activityYear);
+      console.log('screen3 activityMonth:' + this.state.activityMonth);
         return (
         <View style={styles.container}>
               <View>
                 <Text style={styles.titleFont1}>세부 항목 리스트 </Text>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'1'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'1'})}>
                 <Text style={styles.titleFont}>1인 1SW 재산권 취득(SW등록) </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'2'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'2'})}>
                 <Text style={styles.titleFont}>1인 1SW 재산권 취득(SW특허)</Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'3'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'3'})}>
                 <Text style={styles.titleFont}>1인 1SW 재산권 취득(SW논문) </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'4'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'4'})}>
                 <Text style={styles.titleFont}>SW능력 개발활동 </Text></TouchableOpacity>
             </View>
 
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'5'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'5'})}>
                 <Text style={styles.titleFont}>외부기관 평가 </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'6'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'6'})}>
                 <Text style={styles.titleFont}>SW중심대학 사업단 주관 행사 참여</Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'7'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'7'})}>
                 <Text style={styles.titleFont}>교외 SW관련 행사 참여(포럼, 전시회 외) </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'8'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'8'})}>
                 <Text style={styles.titleFont}>외부기관 수상/평가 </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'9'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'9'})}>
                 <Text style={styles.titleFont}>SW 인턴/현장실습 활동 </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'10'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'10'})}>
                 <Text style={styles.titleFont}>SW 취업 활동 </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'11'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'11'})}>
                 <Text style={styles.titleFont}>SW 창업 활동 </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'12'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'12'})}>
                 <Text style={styles.titleFont}>SW 마일스톤 활동 </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'13'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'13'})}>
                 <Text style={styles.titleFont}>SW 소학회, 동아리 </Text></TouchableOpacity>
             </View>
             <View>
-                <TouchableOpacity onPress={()=>this.setState({plan3:'14'})}>
+                <TouchableOpacity onPress={()=>this.setState({activityDetailNum:'14'})}>
                 <Text style={styles.titleFont}>SW 봉사활동 </Text></TouchableOpacity>
             </View>
-
             <View style={styles.horizontality}>
               <TouchableOpacity style={styles.nextButton} onPress={() => {
-                this.props.navigation.navigate('Insertplanner4', {plan1:this.state.plan1, plan2:this.state.plan2, plan3:this.state.plan3})}
+                this.props.navigation.navigate('Insertplanner4', 
+                {activityYear:this.state.activityYear, 
+                  activityMonth:this.state.activityMonth, 
+                  activityDetailNum:this.state.activityDetailNum})}
               }
                 >
                 <Text>다음</Text>

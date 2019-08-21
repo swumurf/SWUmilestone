@@ -1,17 +1,18 @@
 import React from 'react';
 import {StyleSheet,Text,View,TextInput,Button,ScrollView,DatePickerAndroid} from 'react-native';
 
-
-
 export default class Insertplanner4 extends React.Component {
-
   constructor(props){
     super(props);
     const {navigation}=this.props;
-    this.state={plan1:navigation.getParam('plan1'),plan2:navigation.getParam('plan2'),plan3:navigation.getParam('plan3'),startDate:'',expireDate:'',title:''};
+    this.state={
+      activityYear:navigation.getParam('activityYear'),
+      activityMonth:navigation.getParam('activityMonth'),
+      activityDetailNum:navigation.getParam('activityDetailNum'),
+      startDate:'',expireDate:'',title:''};
   }
 
-  postData=async(plan1,plan2,plan3,startDate,expireDate,title)=>{
+  postData=async(activityYear,activityMonth,activityDetailNum,startDate,expireDate,title)=>{
     try{
       console.log('insert planner3 fetch function 진입');
       let res=await fetch('http://13.125.153.65:3000/planner/planner',{
@@ -24,9 +25,9 @@ export default class Insertplanner4 extends React.Component {
       body:JSON.stringify({
         studentIdx:1,
         activityName:this.state.title,
-        activityYear:2019,
-        activityMonth:this.state.plan2,
-        activityDetailNum:this.state.plan3,
+        activityYear:this.state.activityYear,
+        activityMonth:this.state.activityMonth,
+        activityDetailNum:this.state.activityDetailNum,
         activityStartDate:this.state.startDate,
         activityExpireDate:this.state.expireDate,
         activityContain:'sdf'
@@ -46,9 +47,9 @@ export default class Insertplanner4 extends React.Component {
   }
 
   render(){
-    console.log('screen4 plan1: '+this.state.plan1);
-    console.log('screen4 plan2:' + this.state.plan2);
-    console.log('screen4 plan3: '+ this.state.plan3);
+    console.log('screen4 activityYear: '+this.state.activityYear);
+    console.log('screen4 activityMonth:' + this.state.activityMonth);
+    console.log('screen4 activityDetailNum: '+ this.state.activityDetailNum);
 
         return (
           <View style={styles.container}>
@@ -67,7 +68,7 @@ export default class Insertplanner4 extends React.Component {
             onChangeText={(text)=>this.setState({expireDate:text})}></TextInput>
             
             <Button style={styles.nextButton} onPress={() => {
-                this.postData(this.state.plan1,this.state.plan2,this.state.plan3,this.state.startDate,this.state.expireDate,this.state.title);
+                this.postData(this.state.plan1,this.state.plan,this.state.plan3,this.state.startDate,this.state.expireDate,this.state.title);
                 this.props.navigation.navigate('Main')}} title="플래너 저장" value="플래너 저장">
         
                 </Button>

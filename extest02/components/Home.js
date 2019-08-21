@@ -159,7 +159,7 @@ render() {
     <View>
     <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
       console.log('LogIn for Debug');
-      this.props.navigation.navigate('Mainpage');}}>
+      this.props.navigation.navigate('MainDebug');}}>
         <Text style={styles.managerText}>디버그용 로그인</Text>
       </TouchableOpacity>
     </View>

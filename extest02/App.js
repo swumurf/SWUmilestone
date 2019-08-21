@@ -23,6 +23,7 @@ import Insertplanner2 from'./components/Insertplanner2'
 import Insertplanner3 from'./components/Insertplanner3'
 import Insertplanner4 from'./components/Insertplanner4'
 import InsertYearorMonth from './components/InsertYearorMonth'
+import MainDebug from './components/MainDebug'
 
 
 
@@ -50,6 +51,7 @@ const AppNavigator=createStackNavigator({
   Insertplanner4:Insertplanner4,
   Upload:Upload,
   InsertYearorMonth:InsertYearorMonth,
+  MainDebug: MainDebug,
 });
 
 class App extends React.Component {

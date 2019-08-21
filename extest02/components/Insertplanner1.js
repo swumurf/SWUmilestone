@@ -6,23 +6,71 @@ let loginInfo={
     password:''
 };
 
-export default class Insertplanner1 extends React.Component {
-    
+let goal={
+    temp: '',
+};
 
+export default class Insertplanner1 extends React.Component {
     constructor(props){
         super(props);
-        this.state={plan1:''};
-
-        this.list={
-            title: null,
-            start: '2019.03',
-            end: '2019.12',
-            confirmImage: null,
-            detail: null
+        const {navigation}=this.props;
+        this.state={
+            goal1:'', goal2:'', goal3:'', goal4:'', temp: '',
+            activityYear: navigation.getParam('activityYear'),
         };
     }
-    
 
+    postData=async(goal1,goal2,goal3,goal4,activityYear)=>{
+        console.log(goal1);
+        // try{
+        //   console.log('insert 년간 플래너 fetch function 진입');
+        //   let res=await fetch('http://13.125.153.65:3000/planner/plannerYear',{
+          
+        //   method:'POST',
+        //   headers: {
+        //     Accept: 'application/json',
+        //     'Content-Type':'application/json'
+        //   },
+        //   body:JSON.stringify({
+        //     activityYear:this.state.activityYear,
+        //     goal1: this.state.goal1,
+        //     goal2: this.state.goal2,
+        //     goal3: this.state.goal3,
+        //     goal4: this.state.goal4,
+        //   })});
+        //   res=await res;
+        //   console.log("---------------response line1 까지 됨-------------");
+        //   console.log(res);
+        //   console.log("---------------response line2 까지 됨-------------");
+        //   console.log(res._bodyText);
+        //   console.log("---------------response line3 까지 됨-------------");
+        // }catch(error){
+        //   console.error(error);
+        // }
+      }
+
+      _goalSelect=()=>{
+        switch(this.state.activityYear){
+            case '1학년':
+                this.state.goal1 = this.state.temp;
+                console.log('1학년 목표 : '+this.state.goal1);
+                break;
+            case '2학년':
+                this.state.goal2 = this.state.temp;
+                console.log('2학년 목표 : '+this.state.goal2);
+                break;
+            case '3학년':
+                this.state.goal3 = this.state.temp;
+                console.log('3학년 목표 : '+this.state.goal3);
+                break;
+            case '4학년':
+                this.state.goal4 = this.state.temp;
+                console.log('4학년 목표 : '+this.state.goal4);
+                break;
+            default :
+                console.log('학년 선택 잘못함 디용?');
+        }
+    }
 
     render(){
     return (
@@ -36,29 +84,25 @@ export default class Insertplanner1 extends React.Component {
             <View style={styles.container}>
                 <Text style={styles.titleFont}>연간 추진 계획을 입력해주세요</Text>
             </View>
-
             <View style = {styles.horizontality}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
-            <TextInput style={styles.input} placeholder='Enter new to do' name="plan1" 
-            onChangeText={(text)=>this.setState({plan1:text})}
+            <TextInput style={styles.input} placeholder='Enter new to do' name="temp" 
+            onChangeText={(temp)=>this.setState({temp})}
         ></TextInput>
-    
-    
         </View>       
     </View>
     <View style={styles.horizontality}>
-        <Button style={styles.nextButton} title="다음1" onPress={()=>{
-            console.log('plan1: '+this.state.plan1);
-            this.props.navigation.navigate('Upload',{plan1:this.state.plan1});
+        <Button style={styles.nextButton} title="플래너 저장" onPress={()=>{
+            (this._goalSelect());
+            (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4, this.state.activityYear));
+            this.props.navigation.navigate('Mainpage');
     }}  >
     </Button>
+    <Button title='테스트' onPress={()=>{
+        (this._goalSelect())
+    }}></Button>
     </View>
-        
-        
-        </View>
-
-    );
-    }
+    </View>); }
 
     
 }

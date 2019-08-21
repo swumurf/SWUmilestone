@@ -3,10 +3,44 @@ import {Alert, StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,Asyn
 import {RadioGroup} from 'react-native-radio-buttons-group'
 import {RadioButton} from 'react-native-paper'
 
+
+let activityYear={
+  activityYear: '',
+};
+
+_storeData=async()=>{
+  try{
+    await AsyncStorage.setItem('activityYear',JSON.stringify(activityYear),()=>{
+      console.log("async success!!"); 
+    });
+  }catch(error){
+    console.log(error);
+  }
+}
+
+_retrieveData=async()=>{  
+  try{
+    const value=await AsyncStorage.getItem('activityYear',(err,result)=>{
+      console.log(result); //함수 내 동작 바꾸기
+    });
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
+
 export default class InsertYearorMonth extends React.Component {
-  state={
-    value: null,
-  };
+
+  constructor(props){
+    super(props);
+    const {navigation} = this.props;
+    this.state = {activityYear: '', value: null};
+  }
+
+  // state={
+  //   value: null,
+  // };
 
   _gradenullAlter=()=>{
     Alert.alert('', '학년을 선택해주세요.', 
@@ -60,7 +94,7 @@ export default class InsertYearorMonth extends React.Component {
               {(this.state.value  === null) 
                 ? (this._gradenullAlter())
                 : (console.log('연간 추진 계획 ' + this.state.value), 
-                  this.props.navigation.navigate('Insertplanner2'));
+                  this.props.navigation.navigate('Insertplanner1', {activityYear:this.state.value}));
               }}}
           ></Button>
           <Button title="월간 추진 계획"
@@ -68,7 +102,7 @@ export default class InsertYearorMonth extends React.Component {
             {(this.state.value  === null) 
               ? (this._gradenullAlter())
               : (console.log('월간 추진 계획 ' + this.state.value), 
-                this.props.navigation.navigate('Insertplanner1'));
+                this.props.navigation.navigate('Insertplanner2', {activityYear:this.state.value}));
             }}}
             ></Button>
         </View>
