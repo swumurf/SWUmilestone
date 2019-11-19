@@ -5,6 +5,9 @@ import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorag
 const arr= [{list: '리스트 항목1'}, {list: '리스트 항목2'}, {list: '리스트 항목3'}];
 
 export default class MainDebug extends React.Component {
+  static navigationOptions = {
+    header: null
+  }
   /*디버깅용 데이터 넘기기*/
   constructor(props){
     super(props);
