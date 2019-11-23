@@ -9,9 +9,9 @@ export default class Mainpage extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      id : '2015111573',
-      mileage: 1000,
-      gradGoal: '취업하기',
+      id : '',
+      mileage: 0,
+      gradGoal: '',
       curMonth: 5,
       list: [],
     };

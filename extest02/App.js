@@ -9,6 +9,7 @@ import Home from './components/Home'
 import Profile from './components/Profile'
 import Mainpage from './components/Mainpage'
 import Signup from './components/Signup'
+import Signup2 from './components/Signup2'
 import Upload from './components/Upload'
 import Password from './components/Password'
 import Mypage from './components/Mypage'
@@ -52,6 +53,7 @@ const AppNavigator=createStackNavigator({
   Upload:Upload,
   InsertYearorMonth:InsertYearorMonth,
   MainDebug: MainDebug,
+  Signup2:Signup2
 });
 
 class App extends React.Component {

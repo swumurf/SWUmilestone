@@ -127,6 +127,7 @@ render() {
       <Button title="로그인"
         onPress={()=>{
         _storeData();
+        this.props.navigation.navigate('Mainpage');
         this.postData(this.state.studentNum,this.state.password).then(res=>{
          
           console.log('res.body.data'+res.data['studentIdx']);
@@ -147,7 +148,7 @@ render() {
       <Button title="회원가입" 
         onPress={()=>{
           console.log('signup');
-          this.props.navigation.navigate('Signup');}}></Button>
+          this.props.navigation.navigate('Signup2');}}></Button>
     </View>
     <View>
       <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{

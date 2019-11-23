@@ -3,7 +3,10 @@ import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorag
 
 export default class Checkplanner extends React.Component {
     render(){
-    return <View><Text>checkplannerpage</Text></View>
+    return <View styles={styles.container}>
+        <Text style={styles.welcome}>checkplannerpage</Text>
+        
+        </View>
     }
 
 }
@@ -15,4 +18,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     },
+    welcome:{
+        flex:1,
+        margin:20,
+        backgroundColor:'orange',
+        margin:10,
+        textAlign:'center',
+        fontSize:20,
+        paddingTop:70
+    }
 });
