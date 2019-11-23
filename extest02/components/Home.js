@@ -6,7 +6,7 @@ Login.js
 */
 
 import React from 'react';
-import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
+import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, StatusBar, header} from 'react-native';
 
 let loginInfo={
   studentNum:'',
@@ -46,6 +46,9 @@ _gradenullAlter=()=>{
 /*Home 클래스 시작 */
 export default class Home extends React.Component {
 
+static navigationOptions = {
+  header: null
+}
 
 constructor(props){
   super(props);
@@ -109,6 +112,7 @@ update(){
 render() {
   return (
   <View style = {styles.container}>
+    <StatusBar hidden={true}/>
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 아이디 </Text>
