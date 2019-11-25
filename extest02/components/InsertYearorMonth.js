@@ -31,7 +31,10 @@ _retrieveData=async()=>{
 
 
 export default class InsertYearorMonth extends React.Component {
-
+  static navigationOptions = {
+    header: null
+  }
+  
   constructor(props){
     super(props);
     const {navigation} = this.props;
@@ -57,12 +60,11 @@ export default class InsertYearorMonth extends React.Component {
     render(){
       return (
       <View style={styles.container}>
-        <View style={{alignItems: 'flex-end', paddingBottom: 10, paddingRight: 10,}}>
+        <View style={{alignItems: 'flex-end', paddingVertical: 20, paddingRight: 15,}}>
           <Button color="#cccccc" title="HOME"
             onPress={()=>{
             console.log('Back to Mainpage');
-            this.props.navigation.navigate('Mainpage');}}
-          >
+            this.props.navigation.navigate('Mainpage');}}>
           </Button>
         </View>
         <View style={styles.buttonView}>
@@ -88,7 +90,7 @@ export default class InsertYearorMonth extends React.Component {
           </RadioButton.Group>
           </View>
         </View>
-        <View style={{paddingTop: 30}}>
+        <View style={styles.buttonView2}>
           <Button title="연간 추진 계획"
             onPress={() =>{
               {(this.state.value  === null) 
@@ -107,26 +109,35 @@ export default class InsertYearorMonth extends React.Component {
             ></Button>
         </View>
       </View>); }
-
-
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
+      flexDirection: 'column',
+      flex: 1,
     },
 
     buttonView: {
       flexDirection: 'row',
       color: 'blue',
       padding: 20,
+      alignItems: 'center',
     },
 
     button: {
       flexDirection: 'row',
       width: "30%",
       height: 150,
+    },
+
+    buttonView2:{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingBottom: 55,
+      paddingHorizontal: 50,
+      alignSelf: 'stretch',
     },
 });

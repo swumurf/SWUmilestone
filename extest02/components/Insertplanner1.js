@@ -11,6 +11,10 @@ let goal={
 };
 
 export default class Insertplanner1 extends React.Component {
+    static navigationOptions = {
+  header: null
+}
+
     constructor(props){
         super(props);
         const {navigation}=this.props;
@@ -82,28 +86,24 @@ export default class Insertplanner1 extends React.Component {
                 title="홈버튼" color="#999999"
                 accessibilityLabel="Main"></Button>
             </View>
-            <View style={styles.container}>
-                <Text style={styles.titleFont}>연간 추진 계획을 입력해주세요</Text>
-            </View>
-            <View style = {styles.horizontality}>
-            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',borderColor:'#000000'}}>
+            <View style = {styles.vertical}>
+            <Text style={styles.titleFont}>연간 추진 계획을 입력해주세요</Text>
+            <View style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'center',borderColor:'#000000'}}>
             <TextInput style={styles.input} placeholder='Enter new to do' name="temp" 
-            onChangeText={(temp)=>this.setState({temp})}
-        ></TextInput>
-        </View>       
+            onChangeText={(temp)=>this.setState({temp})}></TextInput></View>
+            <View style={styles.horizontality}>
+            <Button style={{flex: 1}} title="플래너 저장" onPress={()=>{
+                (this._goalSelect());
+                (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
+                this.props.navigation.navigate('Mainpage');}}>
+            </Button>
+            <Button style={{flex: 1}} title='테스트' onPress={()=>{(this._goalSelect())}}>
+            </Button>
+            </View>
+            </View>
+            <View style={styles.horizontality}>
     </View>
-    <View style={styles.horizontality}>
-        <Button style={styles.nextButton} title="플래너 저장" onPress={()=>{
-            (this._goalSelect());
-            (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
-            this.props.navigation.navigate('Mainpage');
-    }}  >
-    </Button>
-    <Button title='테스트' onPress={()=>{
-        (this._goalSelect())
-    }}></Button>
-    </View>
-    </View>); }
+</View>); }
 
     
 }
@@ -111,7 +111,9 @@ export default class Insertplanner1 extends React.Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+        flex: 1,
     },
 
     homeview:{
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
 
     titleFont:{
         borderColor:'black',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignSelf : 'center',
         fontSize: 18,
         width:'85%'
@@ -136,9 +138,10 @@ const styles = StyleSheet.create({
 
     horizontality:{
         flexDirection : 'row',
-        //alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'flex-start',
+        justifyContent: 'space-between',
+        alignSelf: 'stretch',
+        paddingVertical: 5,
+        paddingHorizontal: 35,
     },
 
     vertical:{
@@ -160,7 +163,6 @@ const styles = StyleSheet.create({
       width:'100%',
       backgroundColor:'#ffffff',
       borderColor:"#000000",
-      
       fontSize:15,
     },
 

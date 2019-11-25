@@ -3,31 +3,27 @@ import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorag
 
 
 export default class Signup2 extends React.Component {
-    render(){
-
-    const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }
-    });
+  static navigationOptions = {
+    header: null
+  }
+  render(){
+  const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});
     
-    return (
-        <View style={styles.container}>
-            <TextInput
-            styles={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="Email">
-
-            </TextInput>
-              <Text>Signup2</Text>
-        </View>
-        );
-      }
-
-
+  return (
+    <View style={styles.container}>
+      <TextInput
+      styles={styles.input}
+      underlineColorAndroid="transparent"
+      placeholder="Email"></TextInput>
+      <Text>Signup2</Text>
+    </View>);}
 }
 
 const styles = StyleSheet.create({

@@ -5,6 +5,10 @@ import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,Async
 
 export default class Signup extends React.Component {
   
+  static navigationOptions = {
+    header: null
+  }
+  
   constructor(props){
     super(props);
     const {navigation}=this.props;
@@ -65,9 +69,7 @@ export default class Signup extends React.Component {
 
   
   render(){
-
-    
-        return (
+    return (
           <View style = {styles.container}>
           <View style = {styles.logColumn}>
             <View style = {styles.logRow}>

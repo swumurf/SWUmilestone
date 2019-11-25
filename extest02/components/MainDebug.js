@@ -7,7 +7,7 @@ const arr= [{list: '리스트 항목1'}, {list: '리스트 항목2'}, {list: '�
 export default class MainDebug extends React.Component {
   static navigationOptions = {
     header: null
-  }
+  } 
   /*디버깅용 데이터 넘기기*/
   constructor(props){
     super(props);
@@ -24,7 +24,7 @@ export default class MainDebug extends React.Component {
   render(){
     return (
       <View style={styles.container}>
-        <View style={{alignItems: 'flex-end', paddingBottom: 10, paddingRight: 10,}}>
+        <View style={{alignItems: 'flex-end', paddingVertical: 20, paddingRight: 15,}}>
           <Button color='#cccccc' title="마이 페이지"
             onPress={()=>{
             console.log('Mypage');
@@ -47,7 +47,7 @@ export default class MainDebug extends React.Component {
         <Text style={styles.listText}>리스트 항목2</Text>
         <Text style={styles.listText}>리스트 항목3</Text>
         </View>
-        <View style={{paddingBottom: 10}}>
+        <View style={{paddingTop: 10}}>
           <Button title ="활동 내역 확인 및 서류 제출"
             onPress={()=>{
             console.log('활동 내역 확인 및 서류 제출');
@@ -64,9 +64,10 @@ export default class MainDebug extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
       backgroundColor: '#fff',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
+      flexDirection: 'column',
+      flex: 1,
     },
 
     titleView: {
@@ -92,8 +93,7 @@ const styles = StyleSheet.create({
 
     listview: {
       alignItems: 'flex-start',
-      justifyContent: 'space-around',
+      justifyContent: 'flex-start',
     },
-
-
+    
 });

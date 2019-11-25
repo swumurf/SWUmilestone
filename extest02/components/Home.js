@@ -112,7 +112,6 @@ update(){
 render() {
   return (
   <View style = {styles.container}>
-    <StatusBar hidden={true}/>
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 아이디 </Text>
@@ -198,6 +197,7 @@ const styles = StyleSheet.create({
   logText:{
     fontSize: 20,
     padding: 5,
+    flex: 1,
   },
 
   buttonView:{
@@ -206,7 +206,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingHorizontal: 50,
     alignSelf: 'stretch',
-    
   },
 
   button:{
@@ -238,7 +237,7 @@ const styles = StyleSheet.create({
     width:'100%',
     paddingLeft:10,
     paddingRight:10,
-    paddingBottom:30
+    paddingBottom:30  
   },
 
   input:{
@@ -246,7 +245,8 @@ const styles = StyleSheet.create({
     padding:5,
     textAlign:'center',
     fontSize: 15,
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
+    flex: 2,
   },
   });
 
