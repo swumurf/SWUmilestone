@@ -47,23 +47,26 @@ export default class MainDebug extends React.Component {
         <Text style={styles.listText}>리스트 항목2</Text>
         <Text style={styles.listText}>리스트 항목3</Text>
         </View>
-        <View style={{paddingTop: 10}}>
-          <Button title ="활동 내역 확인 및 서류 제출"
+        <View style={styles.buttonView}>
+          <View style={{flex: 1, flexDirection: 'column'}}>
+          <Button style={{height: 100, flex:1}} title ="활동 내역 확인 및 서류 제출"
             onPress={()=>{
             console.log('활동 내역 확인 및 서류 제출');
             this.props.navigation.navigate('ConfirmPlanner');}}>
-          </Button>
-          <Button title ="마일스톤 플래너 입력"
+          </Button></View>
+          <View style={{flex: 1, flexDirection: 'column'}}>
+          <Button style={{height: 100, flex:1}} title ="마일스톤 플래너 입력"
             onPress={()=>{
             console.log('마일스톤 플래너 입력');
             this.props.navigation.navigate('InsertYearorMonth');}}
-          ></Button>
+          ></Button></View>
         </View>
       </View>);}
 }
 
 const styles = StyleSheet.create({
     container: {
+      marginTop:30,
       backgroundColor: '#fff',
       justifyContent: 'space-between',
       flexDirection: 'column',
@@ -94,6 +97,13 @@ const styles = StyleSheet.create({
     listview: {
       alignItems: 'flex-start',
       justifyContent: 'flex-start',
+    },
+
+    buttonView:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%'
     },
     
 });

@@ -133,22 +133,15 @@ render() {
         _storeData();
         this.props.navigation.navigate('Mainpage');
         this.postData(this.state.studentNum,this.state.password).then(res=>{
-         
           console.log('res.body.data'+res.data['studentIdx']);
           if(res.status=='200'){
-
              console.log('res.status 200');
              this.props.navigation.navigate('Mainpage'); //Mainpage로 navigate
            }else{
             console.log('res.status 400');
             _gradenullAlter();
            }
-        }
-        );
-       
-      
-      }
-        }></Button>
+        });}}></Button>
       <Button title="회원가입" 
         onPress={()=>{
           console.log('signup');

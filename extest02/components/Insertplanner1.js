@@ -86,34 +86,33 @@ export default class Insertplanner1 extends React.Component {
                 title="홈버튼" color="#999999"
                 accessibilityLabel="Main"></Button>
             </View>
-            <View style = {styles.vertical}>
+            <View>
             <Text style={styles.titleFont}>연간 추진 계획을 입력해주세요</Text>
-            <View style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'center',borderColor:'#000000'}}>
+            <View style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'stretch',borderColor:'#000000'}}>
             <TextInput style={styles.input} placeholder='Enter new to do' name="temp" 
-            onChangeText={(temp)=>this.setState({temp})}></TextInput></View>
-            <View style={styles.horizontality}>
-            <Button style={{flex: 1}} title="플래너 저장" onPress={()=>{
+            onChangeText={(temp)=>this.setState({temp})}></TextInput></View></View>
+            <Button title="플래너 저장" onPress={()=>{
                 (this._goalSelect());
                 (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
                 this.props.navigation.navigate('Mainpage');}}>
             </Button>
-            <Button style={{flex: 1}} title='테스트' onPress={()=>{(this._goalSelect())}}>
-            </Button>
             </View>
-            </View>
-            <View style={styles.horizontality}>
-    </View>
-</View>); }
+    ); }
 
     
 }
 
 const styles = StyleSheet.create({
     container: {
+        // backgroundColor: '#fff',
+        // justifyContent: 'space-between',
+        // flexDirection: 'column',
+        // flex: 1,
+        marginTop:30,
+        flex: 1,
         backgroundColor: '#fff',
         justifyContent: 'space-between',
         flexDirection: 'column',
-        flex: 1,
     },
 
     homeview:{
