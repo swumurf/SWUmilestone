@@ -7,20 +7,22 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^32.0.0",
+    "expo": "^34.0.3",
     "jade": "^1.11.0",
     "material-bread": "^0.2.4",
     "moment": "^2.24.0",
-    "react": "16.5.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
     "react-native-calendar-picker": "^6.0.2",
+    "react-native-gesture-handler": "^1.5.1",
     "react-native-modal-datetime-picker": "^7.6.0",
     "react-native-paper": "^2.16.0",
     "react-native-radio-buttons-group": "^1.0.7",
     "react-native-simple-toast": "^1.0.0",
     "react-native-sqlite-storage": "^3.3.10",
+    "react-native-svg": "^9.13.3",
     "react-native-table-component": "^1.2.1",
-    "react-navigation": "^3.9.2"
+    "react-navigation": "^3.11.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0"
