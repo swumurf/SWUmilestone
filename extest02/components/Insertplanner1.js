@@ -94,8 +94,8 @@ export default class Insertplanner1 extends React.Component {
             <View style={styles.horizontality}>
             <Button style={{flex: 1}} title="플래너 저장" onPress={()=>{
                 (this._goalSelect());
-                //(this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
-                this.props.navigation.navigate('Home');}}>
+                (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
+                this.props.navigation.navigate('Mainpage');}}>
             </Button>
             <Button style={{flex: 1}} title='테스트' onPress={()=>{(this._goalSelect())}}>
             </Button>

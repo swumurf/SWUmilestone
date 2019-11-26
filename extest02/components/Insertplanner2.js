@@ -1,105 +1,86 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
+import { DataTable, Cell, TableButton } from 'react-native-paper';
+import Toast from 'react-native-simple-toast';
 
 let loginInfo={
   studentNum:'',
   password:''
 };
 
+_showToast = () => {
+  this._toast.show({
+    position: Toast.constants.gravity.top,
+  });
+};
+
 export default class activityMonthner2 extends React.Component {
+  static navigationOptions = {
+    header: null
+  }
+  
   constructor(props){
     super(props);
     const {navigation}=this.props;
     this.state={
       activityYear:navigation.getParam('activityYear'), 
-      plan:''};
+      activityMonth: ''};
   }
 
   render(){
-        return (
-        <View style={styles.container}>
-           <View style={styles.container}>
-                <Text style={styles.titleFont}>월간 추진 계획을 입력할 달을 선택해주세요.</Text>
-            </View>
-           <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({plan:'1'})}>
-            <Text>1월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="2월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({plan:'2'})}>
-              <Text>2월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="3월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({plan:'3'})}>
-              <Text>3월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="4월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({plan:'4'})}>
-              <Text>4월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({plan:'5'})}>
-              <Text>5월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({plan:'6'})}>
-              <Text>6월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({activityMonth:'7'})}>
-              <Text>7월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({activityMonth:'8'})}>
-              <Text>8월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({activityMonth:'9'})}>
-              <Text>9월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({activityMonth:'10'})}>
-              <Text>10월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({activityMonth:'11'})}>
-              <Text>11월</Text>
-            </TouchableOpacity>
-            </View>
-            <View style={styles.horizontality} accessibilityLabel="1월">
-            <TouchableOpacity style={styles.touchbutton} onPress={()=>this.setState({activityMonth:'12'})}>
-              <Text>12월</Text>
-            </TouchableOpacity>
-            </View>
+    return (
+      <View style={styles.container}>
+        <Text style={styles.titleText}>월간 추진 계획을 입력할 달을 선택해주세요.</Text>
+        <View style={styles.dataTable}>
+          <DataTable>
+            <DataTable.Row>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'1'}, Toast.show('1월 선택'))}>
+                <Text style={{textAlign:'center'}}>1월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'2'}, Toast.show('2월 선택'))}>
+                <Text style={{textAlign:'center'}}>2월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'3'}, Toast.show('3월 선택'))}>
+                <Text style={{textAlign:'center'}}>3월</Text></DataTable.Cell>
+            </DataTable.Row>
 
-            <View style={styles.horizontality}>
-            <View style={styles.horizontality}>
-              <TouchableOpacity style={styles.nextButton} onPress={() => {
-                console.log('activityMonth selected:' + this.state.activityMonth);
-                this.props.navigation.navigate('Insertplanner3',
-                           {activityYear:this.state.activityYear, 
-                            activityMonth:this.state.activityMonth})
-              }
-              }
-                >
-                <Text>다음</Text>
-                </TouchableOpacity>
-              </View>
-              <Text>{this.state.activityYear}</Text>
-              </View>
+            <DataTable.Row>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'4'}, Toast.show('4월 선택'))}>
+                <Text style={{textAlign:'center'}}>4월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'5'}, Toast.show('5월 선택'))}>
+                <Text style={{textAlign:'center'}}>5월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'6'}, Toast.show('6월 선택'))}>
+                <Text style={{textAlign:'center'}}>6월</Text></DataTable.Cell>
+            </DataTable.Row>
+            
+            <DataTable.Row>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'7'}, Toast.show('7월 선택'))}>
+                <Text style={{textAlign:'center'}}>7월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'8'}, Toast.show('8월 선택'))}>
+                <Text style={{textAlign:'center'}}>8월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'9'}, Toast.show('9월 선택'))}>
+                <Text style={{textAlign:'center'}}>9월</Text></DataTable.Cell>
+            </DataTable.Row>
+            
+            <DataTable.Row>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'10'}, Toast.show('10월 선택'))}>
+                <Text style={{textAlign:'center'}}>10월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'11'}, Toast.show('11월 선택'))}>
+                <Text style={{textAlign:'center'}}>11월</Text></DataTable.Cell>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'12'}, Toast.show('12월 선택'))}>
+                <Text style={{textAlign:'center'}}>12월</Text></DataTable.Cell>
+            </DataTable.Row>
+          </DataTable>
         </View>
-        );
-      }
+        <View>
+        <Button title = "다음" onPress={() => {
+          console.log('activityMonth selected:' + this.state.activityMonth);
+          this.props.navigation.navigate('Insertplanner3',
+            {activityYear:this.state.activityYear, 
+            activityMonth:this.state.activityMonth})}}>
+        </Button>
+        </View>
+      </View>
+    );
+  }
 
 
 }
@@ -107,74 +88,59 @@ export default class activityMonthner2 extends React.Component {
 const styles = StyleSheet.create({
   container: {
     marginTop:30,
-      backgroundColor: '#fff',
-      justifyContent: 'space-around',
+    //backgroundColor: '#fff',
+    //justifyContent: 'space-between',
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
   },
 
-  homeview:{
-      justifyContent: 'flex-end',
-      alignSelf: 'flex-end',
-      padding: 10,
-      },
-
-  title: {
-      justifyContent: 'center',
-      alignSelf : 'center',
-      marginLeft:'20%'
+  titleText:{
+    borderColor:'black',
+    justifyContent: 'center',
+    alignSelf : 'center',
+    textAlign: 'center',
+    paddingTop: 25,
+    fontSize: 18,
+    width:'85%'
   },
 
-  titleFont:{
-      borderColor:'black',
-      justifyContent: 'center',
-      alignSelf : 'center',
-      fontSize: 18,
-      width:'85%'
+  dataTable: {
+    justifyContent: 'center',
+    margin: 15,
+    marginVertical: 55,
+    paddingBottom: 25,
+    textAlign: 'center',
+    alignItems: 'center',
   },
 
-  horizontality:{
-      flexDirection : 'row',
-      fontSize:40,
-      marginTop:10,
-      marginLeft:30,
-      justifyContent: 'center',
-      alignSelf: 'flex-start',
+  tableText: {
+    flex: 1,
+    textAlign: 'center',
+    alignContent: 'center',
+    alignSelf: 'center',
+    alignItems: 'center',
   },
 
-  vertical:{
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-      alignSelf: 'flex-start',
-  },
-
-  button:{
-      width:'30%',
-      color:"#ffffff",
-      borderColor:"#000000",
-      fontSize:30,
-      paddingBottom:80,
-  },
   nextButton:{
     width:'100%',
-    backgroundColor:'#ffffff',
+    backgroundColor:'#0054FF',
     borderColor:"#000000",
-    
+    flexDirection: 'row-reverse',
     fontSize:15,
+    color: '#000000',
   },
-
-  text: {
-      padding: 20,
-      borderRadius: 5,
-  },
-  input:{
-    height:40,
-    width:'95%',
-    borderColor:'#999999',
-    borderWidth:1,
-    margin:40,
-    width:'80%',
-    height:'80%',
-    padding:5,
-    textAlign:'center'
-  } 
+  
+  horizontality:{
+    //justifyContent: 'space-between',
+    //flexDirection: 'row-reverse',
+    //alignItems: 'flex-end',
+    
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingBottom: 55,
+    paddingHorizontal: 50,
+    alignSelf: 'stretch',
+},
 });
