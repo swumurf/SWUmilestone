@@ -112,6 +112,7 @@ update(){
 render() {
   return (
   <View style = {styles.container}>
+    <StatusBar hidden={true}/>
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 아이디 </Text>
