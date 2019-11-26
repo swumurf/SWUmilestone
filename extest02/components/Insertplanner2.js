@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingTop: 25,
     fontSize: 18,
-    width:'85%'
+    width:'85%',
+    textDecorationLine: 'underline',
   },
 
   dataTable: {

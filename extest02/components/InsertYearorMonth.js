@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       justifyContent: 'space-between',
       flexDirection: 'column',
-      flex: 1,
     },
 
     buttonView: {
