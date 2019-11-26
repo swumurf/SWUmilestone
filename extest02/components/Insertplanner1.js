@@ -81,9 +81,9 @@ export default class Insertplanner1 extends React.Component {
     return (
         <View style = {styles.container}>
             <View style={styles.homeview}>
-            <Button style = {styles.button} onPress={() => {
+            <Button color='#083388' style = {styles.button} onPress={() => {
                 this.props.navigation.navigate('Mainpage')}}
-                title="홈버튼" color="#999999"
+                title="HOME" color="#083388"
                 accessibilityLabel="Main"></Button>
             </View>
             <View>
@@ -91,7 +91,7 @@ export default class Insertplanner1 extends React.Component {
             <View style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'stretch',borderColor:'#000000'}}>
             <TextInput style={styles.input} placeholder='Enter new to do' name="temp" 
             onChangeText={(temp)=>this.setState({temp})}></TextInput></View></View>
-            <Button title="플래너 저장" onPress={()=>{
+            <Button color='#A53134' title="플래너 저장" onPress={()=>{
                 (this._goalSelect());
                 (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
                 this.props.navigation.navigate('Mainpage');}}>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignSelf: 'flex-end',
         padding: 10,
-        },
+    },
 
     title: {
         justifyContent: 'center',

@@ -94,6 +94,12 @@ postData=async(studentNum,password)=>{
     console.log('screen3 activityMonth:' + this.state.activityMonth);
   return (
     <View style={styles.container}>
+      <View style={styles.homeview}>
+            <Button color='#083388' style = {styles.button} onPress={() => {
+                this.props.navigation.navigate('Mainpage')}}
+                title="HOME" color="#083388"
+                accessibilityLabel="Main"></Button>
+      </View>
       <Text style={styles.titleText}>세부 항목 리스트</Text>
       <ScrollView>
       <DataTable>
@@ -103,7 +109,7 @@ postData=async(studentNum,password)=>{
             </DataTableRow>
           ))}
       </DataTable>
-      <Button title="다음" 
+      <Button color='#A53134' title="다음" 
         onPress={() => {
           this.props.navigation.navigate('Insertplanner4', 
             {activityYear:this.state.activityYear, 
@@ -123,6 +129,12 @@ const styles = StyleSheet.create({
   backgroundColor: '#fff',
   justifyContent: 'space-between',
   flexDirection: 'column',
+},
+
+homeview:{
+  justifyContent: 'flex-end',
+  alignSelf: 'flex-end',
+  padding: 10,
 },
 
 titleText:{

@@ -60,12 +60,11 @@ export default class InsertYearorMonth extends React.Component {
     render(){
       return (
       <View style={styles.container}>
-        <View style={{alignItems: 'flex-end', paddingVertical: 20, paddingRight: 15,}}>
-          <Button color="#cccccc" title="HOME"
-            onPress={()=>{
-            console.log('Back to Mainpage');
-            this.props.navigation.navigate('Mainpage');}}>
-          </Button>
+        <View style={styles.homeview}>
+            <Button color='#083388' style = {styles.button} onPress={() => {
+                this.props.navigation.navigate('Mainpage')}}
+                title="HOME" color="#083388"
+                accessibilityLabel="Main"></Button>
         </View>
         <View style={styles.buttonView}>
           <View  style={styles.button}>
@@ -91,7 +90,7 @@ export default class InsertYearorMonth extends React.Component {
           </View>
         </View>
         <View style={styles.buttonView2}>
-          <Button title="연간 추진 계획"
+          <Button color="#A53134" title="연간 추진 계획"
             onPress={() =>{
               {(this.state.value  === null) 
                 ? (this._gradenullAlter())
@@ -99,7 +98,7 @@ export default class InsertYearorMonth extends React.Component {
                   this.props.navigation.navigate('Insertplanner1', {activityYear:this.state.value}));
               }}}
           ></Button>
-          <Button title="월간 추진 계획"
+          <Button color="#A53134" title="월간 추진 계획"
             onPress={() =>{
             {(this.state.value  === null) 
               ? (this._gradenullAlter())
@@ -119,6 +118,12 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       flexDirection: 'column',
     },
+
+    homeview:{
+      justifyContent: 'flex-end',
+      alignSelf: 'flex-end',
+      padding: 10,
+  },
 
     buttonView: {
       flexDirection: 'row',

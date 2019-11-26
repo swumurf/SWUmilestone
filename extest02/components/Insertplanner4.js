@@ -100,13 +100,19 @@ export default class Insertplanner4 extends React.Component {
     
     return (
       <View style={styles.container}>
+        <View style={styles.homeview}>
+            <Button color='#083388' style = {styles.button} onPress={() => {
+                this.props.navigation.navigate('Mainpage')}}
+                title="HOME" color="#083388"
+                accessibilityLabel="Main"></Button>
+        </View>
         <ScrollView>
           <Text style={styles.titleText}>월간 마일스톤 플래너 작성</Text>
           <Text style={styles.titleFont}>제목</Text>
           <TextInput style={styles.input} name="title"
             onChangeText={(text)=>this.setState({title:text})}></TextInput>
           <View style={styles.buttonView}>
-          <Button title="시작 날짜" onPress={this.showDateTimePicker} />
+          <Button color='#083388' title="시작 날짜" onPress={this.showDateTimePicker} />
           <DateTimePicker
             isVisible={this.state.isDateTimePickerVisible}
             onConfirm={this.handleStartDatePicked}
@@ -115,7 +121,7 @@ export default class Insertplanner4 extends React.Component {
           <Text style={{alignSelf: 'center', fontSize: 15, paddingRight: 50}}>{this.state.selectedStartDate}</Text>
           </View>
           <View style={styles.buttonView}>
-          <Button title="종료 날짜" onPress={this.showEndDateTimePicker} />
+          <Button color='#083388' title="종료 날짜" onPress={this.showEndDateTimePicker} />
           <DateTimePicker
             isVisible={this.state.isDateTimePickerVisibleEnd}
             onConfirm={this.handleEndDatePicked}
@@ -124,7 +130,7 @@ export default class Insertplanner4 extends React.Component {
           <Text style={{alignSelf: 'center', fontSize: 15, paddingRight: 50}}>{this.state.selectedEndDate}</Text>
           </View>
         </ScrollView>
-        <Button title="플래너 저장" onPress={() => {
+        <Button color='#A53134' title="플래너 저장" onPress={() => {
           this.postData(this.state.plan1,this.state.plan,this.state.plan3,this.state.selectedStartDate,this.state.selectedEndDate,this.state.title);
           this.props.navigation.navigate('Mainpage')}} value="플래너 저장"></Button>
       </View>
@@ -139,6 +145,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'space-between',
     flexDirection: 'column',
+  },
+
+  homeview:{
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+    padding: 10,
   },
 
   titleText:{

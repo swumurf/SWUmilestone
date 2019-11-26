@@ -30,6 +30,12 @@ export default class activityMonthner2 extends React.Component {
   render(){
     return (
       <View style={styles.container}>
+        <View style={styles.homeview}>
+            <Button color='#083388' style = {styles.button} onPress={() => {
+                this.props.navigation.navigate('Mainpage')}}
+                title="HOME" color="#083388"
+                accessibilityLabel="Main"></Button>
+        </View>
         <Text style={styles.titleText}>월간 추진 계획을 입력할 달을 선택해주세요.</Text>
         <View style={styles.dataTable}>
           <DataTable>
@@ -71,7 +77,7 @@ export default class activityMonthner2 extends React.Component {
           </DataTable>
         </View>
         <View>
-        <Button title = "다음" onPress={() => {
+        <Button color='#A53134' title = "다음" onPress={() => {
           console.log('activityMonth selected:' + this.state.activityMonth);
           this.props.navigation.navigate('Insertplanner3',
             {activityYear:this.state.activityYear, 
@@ -94,6 +100,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'space-between',
     flexDirection: 'column',
+  },
+  
+  homeview:{
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+    padding: 10,
   },
 
   titleText:{

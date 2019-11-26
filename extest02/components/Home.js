@@ -116,19 +116,19 @@ render() {
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 아이디 </Text>
-        <View style={styles.input} ><TextInput name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="blue" 
+        <View style={styles.input} ><TextInput name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="#ffffff" 
           onChangeText={(text)=>this.setState({studentNum:text})}></TextInput></View>
         
       </View>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 비밀번호 </Text>
-        <View style={styles.input}><TextInput  name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="blue" 
+        <View style={styles.input}><TextInput  name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="#ffffff" 
           onChangeText={(text)=>this.setState({password:text})}></TextInput></View>
         
       </View>
     </View>
     <View style = {styles.buttonView}>
-      <Button title="로그인"
+      <Button color='#A53134' title="로그인"
         onPress={()=>{
         _storeData();
         this.props.navigation.navigate('Mainpage');
@@ -142,7 +142,7 @@ render() {
             _gradenullAlter();
            }
         });}}></Button>
-      <Button title="회원가입" 
+      <Button color='#A53134' title="회원가입" 
         onPress={()=>{
           console.log('signup');
           this.props.navigation.navigate('Signup2');}}></Button>
@@ -175,14 +175,14 @@ const styles = StyleSheet.create({
   },
 
   logColumn:{
-    backgroundColor: '#cccccc',
+    backgroundColor: '#A53134',
     flexDirection: 'column',
     justifyContent: 'flex-end',
     padding: 15,
   },
 
   logRow: {
-    backgroundColor: '#cccccc',
+    backgroundColor: '#A53134',
     flexDirection: 'row',
     //justifyContent: 'flex-start',
     justifyContent: 'space-between',
@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 5,
     flex: 1,
+    color: '#ffffff',
   },
 
   buttonView:{
@@ -242,6 +243,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     alignItems: 'flex-start',
     flex: 2,
+    color: '#ffffff',
   },
   });
 

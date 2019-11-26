@@ -25,7 +25,7 @@ export default class MainDebug extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{alignItems: 'flex-end', paddingVertical: 20, paddingRight: 15,}}>
-          <Button color='#cccccc' title="마이 페이지"
+          <Button color='#083388' title="마이 페이지"
             onPress={()=>{
             console.log('Mypage');
             this.props.navigation.navigate('Mypage');}}
@@ -49,13 +49,13 @@ export default class MainDebug extends React.Component {
         </View>
         <View style={styles.buttonView}>
           <View style={{flex: 1, flexDirection: 'column'}}>
-          <Button style={{height: 100, flex:1}} title ="활동 내역 확인 및 서류 제출"
+          <Button color='#A53134' style={{height: 100, flex:1}} title ="활동 내역 확인 및 서류 제출"
             onPress={()=>{
             console.log('활동 내역 확인 및 서류 제출');
             this.props.navigation.navigate('ConfirmPlanner');}}>
           </Button></View>
           <View style={{flex: 1, flexDirection: 'column'}}>
-          <Button style={{height: 100, flex:1}} title ="마일스톤 플래너 입력"
+          <Button color='#A53134' style={{height: 100, flex:1}} title ="마일스톤 플래너 입력"
             onPress={()=>{
             console.log('마일스톤 플래너 입력');
             this.props.navigation.navigate('InsertYearorMonth');}}
