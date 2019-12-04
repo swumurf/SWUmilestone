@@ -6,7 +6,7 @@ Login.js
 */
 
 import React from 'react';
-import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, StatusBar, header} from 'react-native';
+import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, StatusBar, header, caretHidden} from 'react-native';
 
 let loginInfo={
   studentNum:'',
@@ -116,13 +116,13 @@ render() {
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 아이디 </Text>
-        <View style={styles.input} ><TextInput name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="#ffffff" 
+        <View style={styles.input} ><TextInput style={styles.inputText} name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="#ffffff"
           onChangeText={(text)=>this.setState({studentNum:text})}></TextInput></View>
         
       </View>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 비밀번호 </Text>
-        <View style={styles.input}><TextInput  name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="#ffffff" 
+        <View style={styles.input}><TextInput style={styles.inputText} secureTextEntry={true} name="password" autoCapitalize="none" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="#ffffff" 
           onChangeText={(text)=>this.setState({password:text})}></TextInput></View>
         
       </View>
@@ -244,6 +244,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 2,
     color: '#ffffff',
+  },
+
+  inputText:{
+    color: "#ffffff",
   },
   });
 
