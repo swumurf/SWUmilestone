@@ -22,6 +22,7 @@
     "react-native-simple-toast": "^1.0.0",
     "react-native-sqlite-storage": "^3.3.10",
     "react-native-svg": "^9.13.3",
+    "react-native-swipe-gestures": "^1.0.4",
     "react-native-table-component": "^1.2.1",
     "react-navigation": "^3.11.1"
   },

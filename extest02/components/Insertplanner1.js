@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 let loginInfo={
     studentNum:'',
@@ -11,74 +12,97 @@ let goal={
 };
 
 export default class Insertplanner1 extends React.Component {
-    static navigationOptions = {
-  header: null
-}
+  static navigationOptions = {
+      header: null
+  }
 
-    constructor(props){
-        super(props);
-        const {navigation}=this.props;
-        this.state={
-            goal1:'', goal2:'', goal3:'', goal4:'', temp: '',
-            activityYear: navigation.getParam('activityYear'),
-        };
-    }
+  constructor(props) {
+      super(props);
+      const {
+          navigation
+      } = this.props;
+      this.state = {
+          goal1: '',
+          goal2: '',
+          goal3: '',
+          goal4: '',
+          temp: '',
+          activityYear: navigation.getParam('activityYear'),
+      };
+  }
+  
+  /* Swipe */
+  onSwipeRight = (gestureState) => {
+    console.log('이전 화면으로 돌아가기');
+    this.props.navigation.navigate('InsertYearorMonth');
+  }
 
-    postData=async(goal1, goal2, goal3, goal4)=>{
-        try{
+  postData = async (goal1, goal2, goal3, goal4) => {
+      try {
           console.log('insert 년간 플래너 fetch function 진입');
-          let res=await fetch('http://13.125.153.65:3000/planner/plannerYear',{
-          
-          method:'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type':'application/json'
-          },
-          body:JSON.stringify({
-            studentIdx: 1,
-            goal1: this.state.goal1,
-            goal2: this.state.goal2,
-            goal3: this.state.goal3,
-            goal4: this.state.goal4,
-          })
-        });
+          let res = await fetch('http://13.125.153.65:3000/planner/plannerYear', {
 
-          res=await res;
+              method: 'POST',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  studentIdx: 1,
+                  goal1: this.state.goal1,
+                  goal2: this.state.goal2,
+                  goal3: this.state.goal3,
+                  goal4: this.state.goal4,
+              })
+          });
+
+          res = await res;
           console.log("---------------response line1 까지 됨-------------");
           console.log(res);
           console.log("---------------response line2 까지 됨-------------");
           console.log(res._bodyText);
           console.log("---------------response line3 까지 됨-------------");
-        }catch(error){
+      } catch (error) {
           console.error(error);
-        }
       }
+  }
 
-      _goalSelect=()=>{
-        switch(this.state.activityYear){
-            case '1학년':
-                this.state.goal1 = this.state.temp;
-                console.log('1학년 목표 : '+this.state.goal1);
-                break;
-            case '2학년':
-                this.state.goal2 = this.state.temp;
-                console.log('2학년 목표 : '+this.state.goal2);
-                break;
-            case '3학년':
-                this.state.goal3 = this.state.temp;
-                console.log('3학년 목표 : '+this.state.goal3);
-                break;
-            case '4학년':
-                this.state.goal4 = this.state.temp;
-                console.log('4학년 목표 : '+this.state.goal4);
-                break;
-            default :
-                console.log('학년 선택 잘못함 디용?');
-        }
-    }
+  _goalSelect = () => {
+      switch (this.state.activityYear) {
+          case '1학년':
+              this.state.goal1 = this.state.temp;
+              console.log('1학년 목표 : ' + this.state.goal1);
+              break;
+          case '2학년':
+              this.state.goal2 = this.state.temp;
+              console.log('2학년 목표 : ' + this.state.goal2);
+              break;
+          case '3학년':
+              this.state.goal3 = this.state.temp;
+              console.log('3학년 목표 : ' + this.state.goal3);
+              break;
+          case '4학년':
+              this.state.goal4 = this.state.temp;
+              console.log('4학년 목표 : ' + this.state.goal4);
+              break;
+          default:
+              console.log('학년 선택 잘못함 디용?');
+      }
+  }
 
     render(){
+    /* Swipe */
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
     return (
+    <GestureRecognizer 
+        onSwipeRight={this.onSwipeRight}
+        config={config}
+        style={{
+        flex: 1,
+    }}>
         <View style = {styles.container}>
             <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
@@ -97,6 +121,7 @@ export default class Insertplanner1 extends React.Component {
                 this.props.navigation.navigate('Mainpage');}}>
             </Button>
             </View>
+            </GestureRecognizer>
     ); }
 
     

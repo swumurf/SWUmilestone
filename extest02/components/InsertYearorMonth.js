@@ -2,6 +2,7 @@ import React from 'react';
 import {Alert, StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
 import {RadioGroup} from 'react-native-radio-buttons-group'
 import {RadioButton} from 'react-native-paper'
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
 let activityYear={
@@ -41,9 +42,11 @@ export default class InsertYearorMonth extends React.Component {
     this.state = {activityYear: '', value: null};
   }
 
-  // state={
-  //   value: null,
-  // };
+  /* Swipe */
+  onSwipeRight = (gestureState) => {
+    console.log('이전 화면으로 돌아가기');
+    this.props.navigation.navigate('Mainpage');
+  }
 
   _gradenullAlter=()=>{
     Alert.alert('', '학년을 선택해주세요.', 
@@ -58,7 +61,18 @@ export default class InsertYearorMonth extends React.Component {
   }
 
     render(){
-      return (
+      /* Swipe */
+      const config = {
+        velocityThreshold: 0.3,
+        directionalOffsetThreshold: 80
+      };
+      return ( 
+      <GestureRecognizer 
+        onSwipeRight={this.onSwipeRight}
+        config={config}
+        style={{
+        flex: 1,
+      }}> 
       <View style={styles.container}>
         <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
@@ -107,7 +121,9 @@ export default class InsertYearorMonth extends React.Component {
             }}}
             ></Button>
         </View>
-      </View>); }
+      </View>
+      </GestureRecognizer>
+      );}
 }
 
 const styles = StyleSheet.create({

@@ -145,7 +145,7 @@ render() {
       <Button color='#A53134' title="회원가입" 
         onPress={()=>{
           console.log('signup');
-          this.props.navigation.navigate('Signup2');}}></Button>
+          this.props.navigation.navigate('Signup');}}></Button>
     </View>
     <View>
       <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{

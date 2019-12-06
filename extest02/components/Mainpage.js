@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
 
-
 const arr= [{list: '리스트 항목1'}, {list: '리스트 항목2'}, {list: '리스트 항목3'}];
 
 export default class Mainpage extends React.Component {
@@ -19,7 +18,6 @@ export default class Mainpage extends React.Component {
       list: [],
     };
   };
-  
   
   render(){
     return (
@@ -44,8 +42,6 @@ export default class Mainpage extends React.Component {
         <View style={styles.listview}>
         <Text style={styles.titleText}>2019년 {this.state.curMonth}월 MILESTONE</Text>
         <Text style={styles.listText}>리스트 항목1</Text>
-        <Text style={styles.listText}>리스트 항목2</Text>
-        <Text style={styles.listText}>리스트 항목3</Text>
         </View>
         <View style={styles.buttonView}>
           <View style={{flex: 1, flexDirection: 'column'}}>
@@ -61,7 +57,8 @@ export default class Mainpage extends React.Component {
             this.props.navigation.navigate('InsertYearorMonth');}}
           ></Button></View>
         </View>
-      </View>);}
+      </View>
+      );}
 }
 
 const styles = StyleSheet.create({

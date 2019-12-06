@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet,Text,View,TextInput,Button,ScrollView,DatePickerAndroid} from 'react-native';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from 'moment';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 export default class Insertplanner4 extends React.Component {
   static navigationOptions = { 
@@ -18,6 +19,12 @@ export default class Insertplanner4 extends React.Component {
       title:'', selectedStartDate: 'YYYY-MM-DD', selectedEndDate: 'YYYY-MM-DD',
       isDateTimePickerVisible: false,
       isDateTimePickerVisibleEnd: false,};
+  }
+
+  /* Swipe */
+  onSwipeRight = (gestureState) => {
+    console.log('이전 화면으로 돌아가기');
+    this.props.navigation.navigate('Insertplanner3');
   }
 
   showDateTimePicker = () => {
@@ -97,8 +104,18 @@ export default class Insertplanner4 extends React.Component {
     console.log('screen4 activityYear: '+this.state.activityYear);
     console.log('screen4 activityMonth:' + this.state.activityMonth);
     console.log('screen4 activityDetailNum: '+ this.state.activityDetailNum);
-    
+    /* Swipe */
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
     return (
+      <GestureRecognizer 
+        onSwipeRight={this.onSwipeRight}
+        config={config}
+        style={{
+        flex: 1,
+      }}>
       <View style={styles.container}>
         <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
@@ -134,6 +151,7 @@ export default class Insertplanner4 extends React.Component {
           this.postData(this.state.plan1,this.state.plan,this.state.plan3,this.state.selectedStartDate,this.state.selectedEndDate,this.state.title);
           this.props.navigation.navigate('Mainpage')}} value="플래너 저장"></Button>
       </View>
+      </GestureRecognizer>
     );
   }
 }

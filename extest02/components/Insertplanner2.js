@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
 import { DataTable, Cell, TableButton } from 'react-native-paper';
 import Toast from 'react-native-simple-toast';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 let loginInfo={
   studentNum:'',
@@ -26,9 +27,26 @@ export default class activityMonthner2 extends React.Component {
       activityYear:navigation.getParam('activityYear'), 
       activityMonth: ''};
   }
+  
+  /* Swipe */
+  onSwipeRight = (gestureState) => {
+    console.log('이전 화면으로 돌아가기');
+    this.props.navigation.navigate('InsertYearorMonth');
+  }
 
   render(){
+    /* Swipe */
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
     return (
+    <GestureRecognizer 
+      onSwipeRight={this.onSwipeRight}
+      config={config}
+      style={{
+      flex: 1,
+    }}>
       <View style={styles.container}>
         <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
@@ -85,6 +103,7 @@ export default class activityMonthner2 extends React.Component {
         </Button>
         </View>
       </View>
+      </GestureRecognizer>
     );
   }
 

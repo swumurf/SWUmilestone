@@ -1,6 +1,7 @@
 import React from 'react';
 import {SectionList,FlatList, StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 export default class ConfirmPlanner extends React.Component {
 
@@ -22,8 +23,14 @@ export default class ConfirmPlanner extends React.Component {
      evidentialIdx:'',
      activities:[]
     };
-    
   }
+  
+  /* Swipe */
+  onSwipeRight = (gestureState) => {
+    console.log('이전 화면으로 돌아가기');
+    this.props.navigation.navigate('Mainpage');
+  }
+
   /*
   handleArrays(str){
     var newActivities=[];
@@ -57,8 +64,6 @@ export default class ConfirmPlanner extends React.Component {
        //this.handleArrays(res.data[i].activityName);
         console.log(activityNames[i]);
       }
-
-  
     
     }catch(error){
       console.error(error);
@@ -68,7 +73,18 @@ export default class ConfirmPlanner extends React.Component {
 
   render(){
     this.postData();
+    /* Swipe */
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
   return (
+    <GestureRecognizer 
+        onSwipeRight={this.onSwipeRight}
+        config={config}
+        style={{
+        flex: 1,
+      }}>
     <View styles={styles.container}>
        <SectionList
           sections={[
@@ -81,8 +97,8 @@ export default class ConfirmPlanner extends React.Component {
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
           keyExtractor={(item, index) => index}
         />
-       
     </View>
+    </GestureRecognizer>
   );
     
    
