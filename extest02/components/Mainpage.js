@@ -7,10 +7,12 @@ export default class Mainpage extends React.Component {
   static navigationOptions = {
     header: null
   } 
+  static mileage;
   /*디버깅용 데이터 넘기기*/
   constructor(props){
     super(props);
     const {navigation}=this.props;
+    
     this.state={
       studentIdx:navigation.getParam('studentIdx'),
       id : navigation.getParam('studentNum'),
@@ -20,6 +22,8 @@ export default class Mainpage extends React.Component {
       activities:'',
       list: [],
     };
+    
+    
   };
   //메인페이지 정보 요청 
   postData=async()=>{
@@ -37,9 +41,19 @@ export default class Mainpage extends React.Component {
         }
         });
         res=await res.json(); //서버로부터 응답
+       /* 
         this.setState({mileage:res.data['mileage']}); //응답받은 마일리지
         this.setState({grad_Goal:res.data['goal_graduate']}); //응답받은 goal_graduate 
-        this.setState({activities:res.data['activity']}); //응답받은 활동 activities 목록 (text)
+        this.setState({activities:res.data['activity']}); //응답받은 활동 activ ities 목록 (text)
+        */
+
+       Mainpage.mileage=res.data['mileage'];
+       console.log('mileage');
+       console.log(Mainpage.mileage);
+        //this.props.grad_Goal=res.data['goal_graduate'];
+
+        //this.props.activities=res.data['activity'];
+        
         this.splitactivities();
     }catch(error){
       console.error(error);
@@ -69,7 +83,7 @@ export default class Mainpage extends React.Component {
         <View style={styles.titleView}>
           <Text style={styles.titleText}>학번       {this.state.id}   님</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
-          <Text style={styles.titleText}>나의 마일리지       {this.state.mileage}</Text>
+          <Text style={styles.titleText}>나의 마일리지       {Mainpage.mileage}</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
           <Text style={styles.titleText}>나의 졸업 후 목표</Text>
           <Text style={styles.listText}>{this.state.gradGoal}</Text>
