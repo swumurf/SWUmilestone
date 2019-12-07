@@ -10,16 +10,52 @@ export default class Mainpage extends React.Component {
   /*디버깅용 데이터 넘기기*/
   constructor(props){
     super(props);
+    const {navigation}=this.props;
     this.state={
-      id : '2015111573',
-      mileage: 1000,
-      gradGoal: '취업하기',
+      studentIdx:navigation.getParam('studentIdx'),
+      id : navigation.getParam('studentNum'),
+      mileage: null,
+      grad_Goal: null,
       curMonth: 5,
+      activities:'',
       list: [],
     };
   };
-  
+  //메인페이지 정보 요청 
+  postData=async()=>{
+    
+    try{
+      console.log('메인페이지 서버 요청');
+      let url='http://15.165.96.110:3000/main/main/'+this.state.studentIdx;
+      console.log('url: '+ url);
+      
+      let res=await fetch(url,{
+        method:'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type':'application/json'
+        }
+        });
+        res=await res.json(); //서버로부터 응답
+        this.setState({mileage:res.data['mileage']}); //응답받은 마일리지
+        this.setState({grad_Goal:res.data['goal_graduate']}); //응답받은 goal_graduate 
+        this.setState({activities:res.data['activity']}); //응답받은 활동 activities 목록 (text)
+        this.splitactivities();
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+  /*전체 활동 ',' 기준으로 자르는 함수*/
+  splitactivities(){
+    splitArray=this.state.activities.split(',');
+    console.log('splitArray');
+    console.log(splitArray);
+  }
+
+
   render(){
+    this.postData();
     return (
       <View style={styles.container}>
         <View style={{alignItems: 'flex-end', paddingVertical: 20, paddingRight: 15,}}>

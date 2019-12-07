@@ -52,14 +52,18 @@ static navigationOptions = {
 
 constructor(props){
   super(props);
-  const {navigation}=this.props;
-  this.state={studentNum:'', password:'',resStatus:''};
+  const {navigation} = this.props;
+  this.state={
+  studentNum:'', 
+  password:'',
+  resStatus:'',
+  studentIdx:null};
 }
 /* 데이터 서버로 전송해서 서버 response 출력 함수*/
 postData=async(studentNum,password)=>{
   try{
     console.log('fetch function 진입');
-    let res=await fetch('http://13.125.153.65:3000/user/signin',{
+    let res=await fetch('http://15.165.96.110:3000/user/signin',{
     
     method:'POST',
     headers: {
@@ -74,12 +78,13 @@ postData=async(studentNum,password)=>{
     
    
     res=await res.json();
-    console.log("---------------response line1 까지 됨-------------");
     
-    console.log(res);
-    console.log("---------------response line3 까지 됨-------------");
-  this.setState({resStatus:res.status});
+    //studentNum, password 기반으로 서버에서 studentIdx 리턴받아서 state.studentIdx에 저장
+    console.log(res.data['studentIdx']);
+    this.state.studentIdx=res.data['studentIdx'];
+    this.setState({resStatus:res.status});
   return res;
+
   }catch(error){
     console.error(error);
   }
@@ -131,12 +136,13 @@ render() {
       <Button color='#A53134' title="로그인"
         onPress={()=>{
         _storeData();
-        this.props.navigation.navigate('Mainpage');
+        //this.props.navigation.navigate('Mainpage');
         this.postData(this.state.studentNum,this.state.password).then(res=>{
-          console.log('res.body.data'+res.data['studentIdx']);
+    
           if(res.status=='200'){
              console.log('res.status 200');
-             this.props.navigation.navigate('Mainpage'); //Mainpage로 navigate
+             this.props.navigation.navigate('Mainpage',{studentIdx:this.state.studentIdx, studentNum:this.state.studentNum
+              }); //Mainpage로 navigate
            }else{
             console.log('res.status 400');
             _gradenullAlter();
