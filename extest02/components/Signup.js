@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage,Picker} from 'react-native';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 
 export default class Signup extends React.Component {
-  
   static navigationOptions = {
     header: null
   }
@@ -13,8 +13,15 @@ export default class Signup extends React.Component {
     super(props);
     const {navigation}=this.props;
     this.state={studentNum:'',password:'',password2:'',studentName:'',major1:'',major2:'',major3:'',supervisor:'',
-    phoneNum:'',email:'',mileage:'',goal_graduate:'',res:''};
+    phoneNum:'',email:'',mileage:'',goal_graduate:'',res:'',};
   }
+
+  /* Swipe */
+  onSwipeRight = (gestureState) => {
+    console.log('이전 화면으로 돌아가기');
+    this.props.navigation.navigate('Home');
+  }
+
   /**Alert */
   _gradenullAlter=()=>{
     Alert.alert('', '비밀번호를 확인해주세요', 
@@ -32,7 +39,6 @@ export default class Signup extends React.Component {
     try{
       console.log('Signup fetch function 진입');
       let res=await fetch('http://13.125.153.65:3000/user/signup',{
-      
       method:'POST',
       headers: {
         Accept: 'application/json',
@@ -66,10 +72,21 @@ export default class Signup extends React.Component {
       console.error(error);
     }
   }
-
   
   render(){
+    /* Swipe */
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
+
     return (
+          <GestureRecognizer 
+          onSwipeRight={this.onSwipeRight}
+          config={config}
+          style={{
+            flex: 1,
+          }}>
           <View style = {styles.container}>
           <View style = {styles.logColumn}>
             <View style = {styles.logRow}>
@@ -310,8 +327,6 @@ export default class Signup extends React.Component {
               <Text style={styles.logText}>  Email </Text>
               <TextInput style={styles.input} name="Email" placeholder="이메일을 입력해주세요" placeholderTextColor="#99A3A4" 
                 onChangeText={(text)=>this.setState({email:text})}></TextInput>
-    
-                
 
             </View>
             <View style = {styles.logRow}>
@@ -320,7 +335,6 @@ export default class Signup extends React.Component {
                 onChangeText={(text)=>this.setState({goal_graduate:text})}></TextInput>
             </View>
           </View>
-          
           
           <View>
             <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
@@ -331,17 +345,14 @@ export default class Signup extends React.Component {
                     this._gradenullAlter();
               }else{
                 this.postData();
-                
-              
-                this.props.navigation.navigate('Mainpage');}}
+                this.props.navigation.navigate('Home');}}
               }
              >
               <Text style={styles.managerText}>회원가입</Text>
             </TouchableOpacity>
           </View>
-
           </View>
-        
+          </GestureRecognizer>
         );
       }
 

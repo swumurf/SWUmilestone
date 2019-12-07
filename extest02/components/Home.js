@@ -6,7 +6,7 @@ Login.js
 */
 
 import React from 'react';
-import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, StatusBar, header} from 'react-native';
+import {Alert,StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, StatusBar, header, caretHidden} from 'react-native';
 
 let loginInfo={
   studentNum:'',
@@ -116,13 +116,13 @@ render() {
     <View style = {styles.logColumn}>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 아이디 </Text>
-        <View style={styles.input} ><TextInput name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="#ffffff" 
+        <View style={styles.input} ><TextInput style={styles.inputText} name="id" placeholder="PLEASE INSERT ID" placeholderTextColor="#ffffff"
           onChangeText={(text)=>this.setState({studentNum:text})}></TextInput></View>
         
       </View>
       <View style = {styles.logRow}>
         <Text style={styles.logText}> 비밀번호 </Text>
-        <View style={styles.input}><TextInput  name="password" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="#ffffff" 
+        <View style={styles.input}><TextInput style={styles.inputText} secureTextEntry={true} name="password" autoCapitalize="none" placeholder="PLEASE INSERT PASSWORD" placeholderTextColor="#ffffff" 
           onChangeText={(text)=>this.setState({password:text})}></TextInput></View>
         
       </View>
@@ -145,22 +145,21 @@ render() {
       <Button color='#A53134' title="회원가입" 
         onPress={()=>{
           console.log('signup');
-          this.props.navigation.navigate('Signup2');}}></Button>
+          this.props.navigation.navigate('Signup');}}></Button>
     </View>
     <View>
       <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
       console.log('signin as a manager');
       this.props.navigation.navigate('ManagerMain');}}>
         <Text style={styles.managerText}>관리자로 로그인하기</Text>
-      </TouchableOpacity> 
+      </TouchableOpacity>
     </View>
     <View>
-    <TouchableOpacity style={{alignItems: 'center'}}
-     onPress={()=>{
+    <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
       console.log('LogIn for Debug');
       this.props.navigation.navigate('MainDebug');
       }}>
-        <Text style={styles.managerText}>디버깅용 로그인</Text>
+        <Text style={styles.managerText}>디버그용 로그인</Text>
       </TouchableOpacity>
     </View>
   </View>
@@ -174,7 +173,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
-  
+
   logColumn:{
     backgroundColor: '#A53134',
     flexDirection: 'column',
@@ -245,6 +244,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 2,
     color: '#ffffff',
-  }
-  });
+  },
 
+  inputText:{
+    color: "#ffffff",
+  },
+  });

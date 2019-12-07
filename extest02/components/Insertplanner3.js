@@ -1,7 +1,19 @@
 import React from 'react';
-import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, ScrollView} from 'react-native';
+import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, ScrollView, Alert} from 'react-native';
 import { DataTable, Cell, TableButton } from 'react-native-paper';
 import { DataTablePagination, DataTableCell, DataTableRow } from 'material-bread';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+
+_showDialog=(detail)=>{
+  Alert.alert(
+    '세부 항목 선택!',
+    detail+' 선택하셨습니다.',
+    [
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ],
+    {cancelable: false},
+  );
+}
 
 export default class Insertplanner3 extends React.Component {
   static navigationOptions = {
@@ -17,6 +29,11 @@ export default class Insertplanner3 extends React.Component {
       activityDetailNum:'',
       page: 0,
       perPage: 2,};
+  }
+  /* Swipe */
+  onSwipeRight = (gestureState) => {
+      console.log('이전 화면으로 돌아가기');
+      this.props.navigation.navigate('Insertplanner2');
   }
 
   /* 데이터 서버로 전송해서 서버 response 출력 함수*/
@@ -91,7 +108,18 @@ postData=async(studentNum,password)=>{
     ];
     console.log('screen3 activityYear: '+this.state.activityYear);
     console.log('screen3 activityMonth:' + this.state.activityMonth);
+    /* Swipe */
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
   return (
+  <GestureRecognizer 
+    onSwipeRight={this.onSwipeRight}
+    config={config}
+    style={{
+    flex: 1,
+  }}>
     <View style={styles.container}>
       <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
@@ -104,7 +132,9 @@ postData=async(studentNum,password)=>{
       <DataTable>
         {data.map(row => (
             <DataTableRow key={row.content}>
-              <DataTableCell onPress={()=>this.setState({activityDetailNum:row.content}, Toast.show(row.content))} text={row.content} right/>
+              <DataTableCell onPress={
+                ()=>this.setState({activityDetailNum:row.content}, _showDialog(row.content))} 
+                text={row.content} right/>
             </DataTableRow>
           ))}
       </DataTable>
@@ -117,6 +147,7 @@ postData=async(studentNum,password)=>{
       }></Button>
       </ScrollView>
     </View>
+    </GestureRecognizer>
   );
  }
 }
