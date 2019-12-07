@@ -152,14 +152,15 @@ render() {
       console.log('signin as a manager');
       this.props.navigation.navigate('ManagerMain');}}>
         <Text style={styles.managerText}>관리자로 로그인하기</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> 
     </View>
     <View>
-    <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
+    <TouchableOpacity style={{alignItems: 'center'}}
+     onPress={()=>{
       console.log('LogIn for Debug');
       this.props.navigation.navigate('MainDebug');
       }}>
-        <Text style={styles.managerText}>디버그용 로그인</Text>
+        <Text style={styles.managerText}>디버깅용 로그인</Text>
       </TouchableOpacity>
     </View>
   </View>
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
-
+  
   logColumn:{
     backgroundColor: '#A53134',
     flexDirection: 'column',
@@ -244,6 +245,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 2,
     color: '#ffffff',
-  },
+  }
   });
 

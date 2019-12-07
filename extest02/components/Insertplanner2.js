@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
 import { DataTable, Cell, TableButton } from 'react-native-paper';
-import Toast from 'react-native-simple-toast';
 
 let loginInfo={
   studentNum:'',
@@ -40,38 +39,38 @@ export default class activityMonthner2 extends React.Component {
         <View style={styles.dataTable}>
           <DataTable>
             <DataTable.Row>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'1'}, Toast.show('1월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'1'})}>
                 <Text style={{textAlign:'center'}}>1월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'2'}, Toast.show('2월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'2'})}>
                 <Text style={{textAlign:'center'}}>2월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'3'}, Toast.show('3월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'3'})}>
                 <Text style={{textAlign:'center'}}>3월</Text></DataTable.Cell>
             </DataTable.Row>
 
             <DataTable.Row>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'4'}, Toast.show('4월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'4'})}>
                 <Text style={{textAlign:'center'}}>4월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'5'}, Toast.show('5월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'5'})}>
                 <Text style={{textAlign:'center'}}>5월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'6'}, Toast.show('6월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'6'})}>
                 <Text style={{textAlign:'center'}}>6월</Text></DataTable.Cell>
             </DataTable.Row>
             
             <DataTable.Row>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'7'}, Toast.show('7월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'7'})}>
                 <Text style={{textAlign:'center'}}>7월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'8'}, Toast.show('8월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'8'})}>
                 <Text style={{textAlign:'center'}}>8월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'9'}, Toast.show('9월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'9'})}>
                 <Text style={{textAlign:'center'}}>9월</Text></DataTable.Cell>
             </DataTable.Row>
             
             <DataTable.Row>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'10'}, Toast.show('10월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'10'})}>
                 <Text style={{textAlign:'center'}}>10월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'11'}, Toast.show('11월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'11'})}>
                 <Text style={{textAlign:'center'}}>11월</Text></DataTable.Cell>
-              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'12'}, Toast.show('12월 선택'))}>
+              <DataTable.Cell style={{textAlign: 'center', justifyContent:'center', alignItems:'center'}} onPress={()=>this.setState({activityMonth:'12'})}>
                 <Text style={{textAlign:'center'}}>12월</Text></DataTable.Cell>
             </DataTable.Row>
           </DataTable>

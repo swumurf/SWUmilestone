@@ -22,6 +22,7 @@
     "react-native-sqlite-storage": "^3.3.10",
     "react-native-svg": "^9.13.3",
     "react-native-table-component": "^1.2.1",
+    "react-native-tiny-toast": "^1.0.4",
     "react-navigation": "^3.11.1"
   },
   "devDependencies": {

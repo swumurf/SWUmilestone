@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, ScrollView} from 'react-native';
 import { DataTable, Cell, TableButton } from 'react-native-paper';
-import Toast from 'react-native-simple-toast';
 import { DataTablePagination, DataTableCell, DataTableRow } from 'material-bread';
 
 export default class Insertplanner3 extends React.Component {
