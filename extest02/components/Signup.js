@@ -106,7 +106,7 @@ export default class Signup extends React.Component {
             </View>
             <View style = {styles.logRow}>
               <Text style={styles.ImportlogText}> *비밀번호 확인</Text>
-              <TextInput style={styles.input} name="password" placeholder="비밀번호를 다시 입력해주세요" placeholderTextColor="#99A3A4" 
+              <TextInput style={styles.input} secureTextEntry={true} name="password" placeholder="비밀번호를 다시 입력해주세요" placeholderTextColor="#99A3A4" 
                 onChangeText={(text)=>this.setState({password2:text})}></TextInput>
             </View>
             <View style = {styles.logRow}>

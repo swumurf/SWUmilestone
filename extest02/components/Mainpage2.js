@@ -105,7 +105,9 @@ export default class Mainpage extends React.Component {
           <Button color='#083388' title="마이 페이지"
             onPress={()=>{
             console.log('Mypage');
-            this.props.navigation.navigate('Mypage');}}
+            console.log(this.state.studentIdx);
+            this.props.navigation.navigate('Mypage', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
+          }}
           >
           </Button>
         </View>
@@ -127,13 +129,13 @@ export default class Mainpage extends React.Component {
           <Button color='#A53134' style={{height: 100, flex:1}} title ="활동 내역 확인 및 서류 제출"
             onPress={()=>{
             console.log('활동 내역 확인 및 서류 제출');
-            this.props.navigation.navigate('ConfirmPlanner');}}>
+            this.props.navigation.navigate('ConfirmPlanner', {studentIdx:this.state.studentIdx, studentNum:this.state.studentNum});}}>
           </Button></View>
           <View style={{flex: 1, flexDirection: 'column'}}>
           <Button color='#A53134' style={{height: 100, flex:1}} title ="마일스톤 플래너 입력"
             onPress={()=>{
             console.log('마일스톤 플래너 입력');
-            this.props.navigation.navigate('InsertYearorMonth');}}
+            this.props.navigation.navigate('InsertYearorMonth', {studentIdx:this.state.studentIdx, studentNum:this.state.studentNum});}}
           ></Button></View>
         </View>
       </View>
