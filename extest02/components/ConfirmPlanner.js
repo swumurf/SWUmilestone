@@ -6,7 +6,14 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 var splitArray=new Array();
 export default class ConfirmPlanner extends React.Component {
-
+  static navigationOptions = {
+    header: null
+  } 
+  static istrue={
+    isMileage:true,
+    isGoal:true,
+    isList:true,
+  };
   constructor(props){
     super(props);
     const {navigation}=this.props;
@@ -55,6 +62,7 @@ export default class ConfirmPlanner extends React.Component {
         }
         });
         res=await res.json(); //서버로부터 응답
+        if(ConfirmPlanner.istrue.is)
         console.log(res.data.length); 
         var activityNames=new Array(); //학번 별로 조회한 마일스톤 활동들 전체 배열
         var activityNamesString; //배열 -> String (나중에 화면에 뿌려주기 위해서)

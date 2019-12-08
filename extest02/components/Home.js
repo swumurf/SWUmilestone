@@ -141,7 +141,7 @@ render() {
     
           if(res.status=='200'){
              console.log('res.status 200');
-             this.props.navigation.navigate('Mainpage',{studentIdx:this.state.studentIdx, studentNum:this.state.studentNum
+             this.props.navigation.navigate('Mainpage2',{studentIdx:this.state.studentIdx, studentNum:this.state.studentNum
               }); //Mainpage로 navigate
            }else{
             console.log('res.status 400');
