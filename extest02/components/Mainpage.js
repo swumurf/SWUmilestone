@@ -7,12 +7,12 @@ export default class Mainpage extends React.Component {
   static navigationOptions = {
     header: null
   } 
-  static mileage;
+  //static mileage;
   /*디버깅용 데이터 넘기기*/
   constructor(props){
     super(props);
     const {navigation}=this.props;
-    
+    let mileage=null;
     this.state={
       studentIdx:navigation.getParam('studentIdx'),
       id : navigation.getParam('studentNum'),
@@ -25,6 +25,7 @@ export default class Mainpage extends React.Component {
     
     
   };
+
   //메인페이지 정보 요청 
   postData=async()=>{
     
@@ -47,13 +48,15 @@ export default class Mainpage extends React.Component {
         this.setState({activities:res.data['activity']}); //응답받은 활동 activ ities 목록 (text)
         */
 
-       Mainpage.mileage=res.data['mileage'];
-       console.log('mileage');
-       console.log(Mainpage.mileage);
+       //Mainpage.mileage=res.data['mileage'];
+       //console.log('mileage');
+       //console.log(Mainpage.mileage);
+       
         //this.props.grad_Goal=res.data['goal_graduate'];
 
-        //this.props.activities=res.data['activity'];
-        
+        this.props.mileage=res.data['mileage'];
+        console.log('mileageeeee');
+        console.log(this.props.mileage);
         this.splitactivities();
     }catch(error){
       console.error(error);
@@ -66,6 +69,7 @@ export default class Mainpage extends React.Component {
     console.log('splitArray');
     console.log(splitArray);
   }
+
 
 
   render(){
@@ -83,7 +87,7 @@ export default class Mainpage extends React.Component {
         <View style={styles.titleView}>
           <Text style={styles.titleText}>학번       {this.state.id}   님</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
-          <Text style={styles.titleText}>나의 마일리지       {Mainpage.mileage}</Text>
+          <Text style={styles.titleText}>나의 마일리지       {this.props.mileage}</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
           <Text style={styles.titleText}>나의 졸업 후 목표</Text>
           <Text style={styles.listText}>{this.state.gradGoal}</Text>
