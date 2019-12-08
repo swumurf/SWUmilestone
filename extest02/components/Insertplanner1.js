@@ -40,7 +40,7 @@ export default class Insertplanner1 extends React.Component {
   postData = async (goal1, goal2, goal3, goal4) => {
       try {
           console.log('insert 년간 플래너 fetch function 진입');
-          let res = await fetch('http://13.125.153.65:3000/planner/plannerYear', {
+          let res = await fetch('http://15.165.96.110:3000/planner/plannerYear', {
 
               method: 'POST',
               headers: {
