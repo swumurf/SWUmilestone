@@ -17,7 +17,7 @@ export default class Insertplanner4 extends React.Component {
       activityMonth:navigation.getParam('activityMonth'),
       activityDetailNum:navigation.getParam('activityDetailNum'),
       activityContain: navigation.getParam('activityContain'),
-      title:'', selectedStartDate: 'YYYY-MM-DD', selectedEndDate: 'YYYY-MM-DD',
+      title:null, selectedStartDate: 'YYYY-MM-DD', selectedEndDate: 'YYYY-MM-DD',
       isDateTimePickerVisible: false,
       isDateTimePickerVisibleEnd: false,
       studentIdx:navigation.getParam('studentIdx'),

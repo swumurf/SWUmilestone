@@ -48,7 +48,7 @@ export default class activityMonthner2 extends React.Component {
   /* Swipe */
   onSwipeRight = (gestureState) => {
     console.log('이전 화면으로 돌아가기');
-    this.props.navigation.navigate('InsertYearorMonth');
+    this.props.navigation.navigate('InsertYearorMonth', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
   }
 
   render(){
