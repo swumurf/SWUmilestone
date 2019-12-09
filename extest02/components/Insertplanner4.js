@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet,Text,View,TextInput,Button,ScrollView,DatePickerAndroid} from 'react-native';
+import {StyleSheet,Text,View,TextInput,Button,ScrollView,DatePickerAndroid, Alert} from 'react-native';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from 'moment';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
@@ -16,15 +16,19 @@ export default class Insertplanner4 extends React.Component {
       activityYear:navigation.getParam('activityYear'),
       activityMonth:navigation.getParam('activityMonth'),
       activityDetailNum:navigation.getParam('activityDetailNum'),
+      activityContain: navigation.getParam('activityContain'),
       title:'', selectedStartDate: 'YYYY-MM-DD', selectedEndDate: 'YYYY-MM-DD',
       isDateTimePickerVisible: false,
-      isDateTimePickerVisibleEnd: false,};
+      isDateTimePickerVisibleEnd: false,
+      studentIdx:navigation.getParam('studentIdx'),
+      id : navigation.getParam('studentNum'),
+    };
   }
 
   /* Swipe */
   onSwipeRight = (gestureState) => {
     console.log('이전 화면으로 돌아가기');
-    this.props.navigation.navigate('Insertplanner3');
+    this.props.navigation.navigate('Insertplanner3', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
   }
 
   showDateTimePicker = () => {
@@ -65,6 +69,17 @@ export default class Insertplanner4 extends React.Component {
   endDateSetting = date => {
     console.log(date);
     this.hideDateTimePicker();
+  };
+
+  _showDialog=()=>{
+    Alert.alert(
+      '월간 입력',
+      '입력 성공!',
+      [
+        {text: 'OK', onPress: () => this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id})},
+      ],
+      {cancelable: false},
+    );
   }
 
   postData=async(activityYear,activityMonth,activityDetailNum,startDate,expireDate,title)=>{
@@ -78,14 +93,14 @@ export default class Insertplanner4 extends React.Component {
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
-        studentIdx:1,
+        studentIdx:this.state.studentIdx,
         activityName:this.state.title,
         activityYear:this.state.activityYear,
         activityMonth:this.state.activityMonth,
         activityDetailNum:this.state.activityDetailNum,
         activityStartDate:this.state.startDate,
         activityExpireDate:this.state.expireDate,
-        activityContain:'sdf'
+        activityContain:this.state.activityContain,
       })
       });
       
@@ -95,6 +110,7 @@ export default class Insertplanner4 extends React.Component {
       console.log("---------------response line2 까지 됨-------------");
       console.log(res._bodyText);
       console.log("---------------response line3 까지 됨-------------");
+      this._showDialog();
     }catch(error){
       console.error(error);
     }
@@ -119,7 +135,7 @@ export default class Insertplanner4 extends React.Component {
       <View style={styles.container}>
         <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
-                this.props.navigation.navigate('Mainpage')}}
+                this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id})}}
                 title="HOME" color="#083388"
                 accessibilityLabel="Main"></Button>
         </View>
@@ -149,7 +165,7 @@ export default class Insertplanner4 extends React.Component {
         </ScrollView>
         <Button color='#A53134' title="플래너 저장" onPress={() => {
           this.postData(this.state.plan1,this.state.plan,this.state.plan3,this.state.selectedStartDate,this.state.selectedEndDate,this.state.title);
-          this.props.navigation.navigate('Mainpage')}} value="플래너 저장"></Button>
+          }} value="플래너 저장"></Button>
       </View>
       </GestureRecognizer>
     );

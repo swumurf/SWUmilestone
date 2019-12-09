@@ -27,13 +27,17 @@ export default class Insertplanner3 extends React.Component {
       activityYear:navigation.getParam('activityYear'),
       activityMonth:navigation.getParam('activityMonth'),
       activityDetailNum:'',
+      activityContain: '',
       page: 0,
-      perPage: 2,};
+      perPage: 2,
+      studentIdx:navigation.getParam('studentIdx'),
+      id : navigation.getParam('studentNum'),
+    };
   }
   /* Swipe */
   onSwipeRight = (gestureState) => {
       console.log('이전 화면으로 돌아가기');
-      this.props.navigation.navigate('Insertplanner2');
+      this.props.navigation.navigate('Insertplanner2', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
   }
 
   /* 데이터 서버로 전송해서 서버 response 출력 함수*/
@@ -49,7 +53,7 @@ postData=async(studentNum,password)=>{
     },
     body:JSON.stringify({
       studentNum:this.state.activityYear,
-      password:this.state.activityMonth
+      password:this.state.activityMonth,
     })
     });
     
@@ -67,43 +71,43 @@ postData=async(studentNum,password)=>{
   render(){
     const data= [
       {
-        content: '1인 1SW 재산권 취득(SW등록)',
+        content: ['1인 1SW 재산권 취득(SW등록)', 0],
       },
       {
-        content: '1인 1SW 재산권 취득(SW특허)',
+        content: ['1인 1SW 재산권 취득(SW특허)', 1],
       },
       {
-        content: '1인 1SW 재산권 취득(SW논문)',
+        content: ['1인 1SW 재산권 취득(SW논문)', 2],
       },
       {
-        content: 'SW능력 개발 활동',
+        content: ['SW능력 개발 활동', 3],
       },
       {
-        content: '외부기관 평가',
+        content: ['외부기관 평가', 4],
       },
       {
-        content: 'SW중심대학 사업단 주관 행사 참여',
+        content: ['SW중심대학 사업단 주관 행사 참여', 5],
       },
       {
-        content: '교외 SW 관련 행사 참여(포럼, 전시회 외)',
+        content: ['교외 SW 관련 행사 참여(포럼, 전시회 외)', 6],
       },
       {
-        content: 'SW 인턴 / 현장 실습 활동',
+        content: ['SW 인턴 / 현장 실습 활동', 7],
       },
       {
-        content: 'SW 취업 활동',
+        content: ['SW 취업 활동', 8],
       },
       {
-        content: 'SW 창업 활동',
+        content: ['SW 창업 활동', 9],
       },
       {
-        content: 'SW 마일스톤 활동',
+        content: ['SW 마일스톤 활동', 10],
       },
       {
-        content: 'SW 소학회, 동아리',
+        content: ['SW 소학회, 동아리', 11],
       },
       {
-        content: 'SW 봉사활동',
+        content: ['SW 봉사활동', 12],
       },
     ];
     console.log('screen3 activityYear: '+this.state.activityYear);
@@ -123,7 +127,7 @@ postData=async(studentNum,password)=>{
     <View style={styles.container}>
       <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
-                this.props.navigation.navigate('Mainpage')}}
+                this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id})}}
                 title="HOME" color="#083388"
                 accessibilityLabel="Main"></Button>
       </View>
@@ -133,8 +137,8 @@ postData=async(studentNum,password)=>{
         {data.map(row => (
             <DataTableRow key={row.content}>
               <DataTableCell onPress={
-                ()=>this.setState({activityDetailNum:row.content}, _showDialog(row.content))} 
-                text={row.content} right/>
+                ()=>this.setState({activityContain:row.content[0], activityDetailNum: row.content[1]}, _showDialog(row.content[0]))} 
+                text={row.content[0]} right/>
             </DataTableRow>
           ))}
       </DataTable>
@@ -143,7 +147,9 @@ postData=async(studentNum,password)=>{
           this.props.navigation.navigate('Insertplanner4', 
             {activityYear:this.state.activityYear, 
              activityMonth:this.state.activityMonth, 
-             activityDetailNum:this.state.activityDetailNum})}
+             activityDetailNum:this.state.activityDetailNum,
+             activityContain:this.state.activityContain,
+             studentIdx:this.state.studentIdx, studentNum:this.state.id})}
       }></Button>
       </ScrollView>
     </View>

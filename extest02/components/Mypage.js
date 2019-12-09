@@ -59,7 +59,7 @@ export default class Mypage extends React.Component {
             onPress={()=>{
             console.log('Mainpage');
             console.log(this.state.studentIdx);
-            this.props.navigation.navigate('Mainpage2', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
+            this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
           }}
           >
           </Button>
