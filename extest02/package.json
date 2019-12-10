@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "expo": "^34.0.3",
+    "expo-permissions": "^8.0.0",
     "jade": "^1.11.0",
     "material-bread": "^0.2.4",
     "moment": "^2.24.0",

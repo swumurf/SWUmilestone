@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import {Image,  Text, View, StyleSheet, Button } from 'react-native';
-import * as Expo from 'expo';
+import * as Permissions from 'expo-permissions';
 
 export default class Usercertificate extends Component {
-  state = {
-    chosenImage: null,
-    takenImage:null
+  static navigationOptions = {
+    title: '증빙자료 제출'
   }
+  
+  // state = {
+  //   chosenImage: null,
+  //   takenImage:null
+  // }
+
+  constructor(props){
+    super(props);
+    const {navigation}=this.props;
+    this.state={
+      studentIdx:navigation.getParam('sIdx'),
+      id : navigation.getParam('studentNum'),
+      chosenImage: null,
+      takenImage:null,
+    };
+  };
 
   _launchCameraRollAsync =async ()=>{
+    console.log(1234);
     let {status} = await Expo.Permissions.askAsync(Expo.Permissions.CAMERA_ROLL);
     if(status !== 'granted'){
       console.error('Camera not granted')
@@ -23,6 +39,7 @@ export default class Usercertificate extends Component {
     this.setState({chosenImage: image})
     console.log(image)
   }
+
   _launcCameraAsync =async()=>{
     let {status} = Expo.Permissions.askAsync(Expo.Permissions.CAMERA)
     if(status !== 'granted'){
@@ -55,8 +72,11 @@ export default class Usercertificate extends Component {
           height:200,
           width:200
          }}/>)}
+        <Button title="제출하기" 
+        onPress={()=>{
+          this.props.navigation.navigate('Mainpage', 
+          {studentIdx:this.state.studentIdx, studentNum:this.state.id});}}></Button>
       </View>
-      
     );
   }
 }
@@ -66,7 +86,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Expo.Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
   paragraph: {

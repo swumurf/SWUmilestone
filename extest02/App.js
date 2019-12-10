@@ -26,6 +26,7 @@ import Insertplanner4 from'./components/Insertplanner4'
 import InsertYearorMonth from './components/InsertYearorMonth'
 import MainDebug from './components/MainDebug'
 import Mainpage2 from './components/Mainpage2'
+import Usercertificate from './components/Usercertificate'
 
 
 
@@ -53,9 +54,10 @@ const AppNavigator=createStackNavigator({
   Insertplanner4:Insertplanner4,
   Upload:Upload,
   InsertYearorMonth:InsertYearorMonth,
+  Usercertificate:Usercertificate,
   MainDebug: MainDebug,
   Signup2:Signup2,
-  Mainpage2:Mainpage2
+  Mainpage2:Mainpage2,
 });
 
 class App extends React.Component {

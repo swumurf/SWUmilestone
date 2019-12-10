@@ -130,8 +130,6 @@ export default class Insertplanner4 extends React.Component {
       res=await res.json();
       console.log("---------------response line1 까지 됨-------------");
       console.log(res);
-     
-      this._showDialog();
     }catch(error){
       console.error(error);
     }
@@ -186,6 +184,7 @@ export default class Insertplanner4 extends React.Component {
         </ScrollView>
         <Button color='#A53134' title="플래너 저장" onPress={() => {
           this.postData(this.state.activityName,this.state.activityYear,this.state.activityMonth,this.state.activityDetailNum,this.state.selectedStartDate,this.state.selectedEndDate,this.state.title,this.state.studentIdx);
+          this._showDialog();
           this.props.navigation.navigate('Mainpage')}} value="플래너 저장"></Button>
       </View>
       </GestureRecognizer>

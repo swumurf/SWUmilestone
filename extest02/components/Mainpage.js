@@ -41,7 +41,7 @@ export default class Mainpage extends React.Component {
       console.log('메인페이지 서버 요청');
       let url='http://15.165.96.110:3000/main/main/'+this.state.studentIdx;
       console.log('url: '+ url);
-      
+      console.log(Mainpage.istrue.isGoal);
       let res=await fetch(url,{
         method:'GET',
         headers: {
