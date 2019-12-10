@@ -6,7 +6,7 @@ import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 export default class Signup extends React.Component {
   static navigationOptions = {
-    header: null
+    title: '회원가입',  
   }
   
   constructor(props){
@@ -90,7 +90,7 @@ export default class Signup extends React.Component {
           <View style = {styles.container}>
           <View style = {styles.logColumn}>
             <View style = {styles.logRow}>
-              <Text style={styles.logText}> *학번 </Text>
+              <Text style={styles.ImportlogText}> *학번 </Text>
               <TextInput style={styles.input} name="id" placeholder="학번을 입력해주세요" placeholderTextColor="#99A3A4" 
                 onChangeText={(text)=>this.setState({studentNum:text})}></TextInput>
             </View>
@@ -100,17 +100,17 @@ export default class Signup extends React.Component {
                 onChangeText={(text)=>this.setState({studentName:text})}></TextInput>
             </View>
             <View style = {styles.logRow}>
-              <Text style={styles.logText}> *비밀번호 </Text>
-              <TextInput style={styles.input} name="password" placeholder="비밀번호를 입력해주세요" placeholderTextColor="#99A3A4" 
+              <Text style={styles.ImportlogText}> *비밀번호 </Text>
+              <TextInput style={styles.input} secureTextEntry={true} name="password" placeholder="비밀번호를 입력해주세요" placeholderTextColor="#99A3A4" 
                 onChangeText={(text)=>this.setState({password:text})}></TextInput>
             </View>
             <View style = {styles.logRow}>
-              <Text style={styles.logText}> *비밀번호 확인</Text>
-              <TextInput style={styles.input} name="password" placeholder="비밀번호를 다시 입력해주세요" placeholderTextColor="#99A3A4" 
+              <Text style={styles.ImportlogText}> *비밀번호 확인</Text>
+              <TextInput style={styles.input} secureTextEntry={true} name="password" placeholder="비밀번호를 다시 입력해주세요" placeholderTextColor="#99A3A4" 
                 onChangeText={(text)=>this.setState({password2:text})}></TextInput>
             </View>
             <View style = {styles.logRow}>
-              <Text style={styles.logText}>  제1전공 </Text>
+              <Text style={styles.ImportlogText}>  *제1전공 </Text>
               <Picker
               selectedValue={this.state.major1}
               style={{height:50,width:'70%'}}
@@ -183,6 +183,7 @@ export default class Signup extends React.Component {
                selectedValue={this.state.major2}
               style={{height:50,width:'70%'}}
               onValueChange={(itemValue)=>this.setState({major2:itemValue})}>
+                <Picker.Item label="none" value="null"/>
                 <Picker.Item label="국어국문학과" value="국어국문학과"/>
                 <Picker.Item label="영어영문학과" value="영어영문학과"/>
                 <Picker.Item label="불어불문학과" value="불어불문학과"/>
@@ -251,6 +252,7 @@ export default class Signup extends React.Component {
                selectedValue={this.state.major3}
                 style={{height:50,width:'70%'}}
                  onValueChange={(itemValue)=>this.setState({major3:itemValue})}>
+                   <Picker.Item label="none" value="null"/>
                 <Picker.Item label="국어국문학과" value="국어국문학과"/>
                 <Picker.Item label="영어영문학과" value="영어영문학과"/>
                 <Picker.Item label="불어불문학과" value="불어불문학과"/>
@@ -380,14 +382,39 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
 
-  logText:{
-    fontSize: 14,
+  ImportlogText:{
+    fontSize: 20,
+    width:'30%',
     padding: 5,
+    alignContent: 'stretch',
+    textAlign: 'right',
+    color: '#A53134'
   },
+
+  logText: {
+    fontSize: 20,
+    width:'30%',
+    padding: 5,
+    alignContent: 'stretch',
+    textAlign: 'right',
+
+  },
+
   item: {
     padding: 10,
     fontSize: 18,
     height: 44,
-  }
+  },
+  input: {
+    alignContent: 'stretch',
+    width:'70%',
+    paddingLeft: 10,
+  },
+  managerText: {
+    fontSize: 20,
+    padding: 10,
+    backgroundColor: '#083388',
+    color: '#ffffff'
+  },
   
 });

@@ -39,6 +39,8 @@ export default class activityMonthner2 extends React.Component {
     this.state={
       activityYear:navigation.getParam('activityYear'), 
       activityMonth: '1',
+      studentIdx:navigation.getParam('studentIdx'),
+      id : navigation.getParam('studentNum'),
     };
   }
 
@@ -46,7 +48,7 @@ export default class activityMonthner2 extends React.Component {
   /* Swipe */
   onSwipeRight = (gestureState) => {
     console.log('이전 화면으로 돌아가기');
-    this.props.navigation.navigate('InsertYearorMonth');
+    this.props.navigation.navigate('InsertYearorMonth', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
   }
 
   render(){
@@ -65,7 +67,7 @@ export default class activityMonthner2 extends React.Component {
       <View style={styles.container}>
         <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
-                this.props.navigation.navigate('Mainpage')}}
+                this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id})}}
                 title="HOME" color="#083388"
                 accessibilityLabel="Main"></Button>
         </View>
@@ -127,7 +129,8 @@ export default class activityMonthner2 extends React.Component {
           console.log('activityMonth selected:' + this.state.activityMonth);
           this.props.navigation.navigate('Insertplanner3',
             {activityYear:this.state.activityYear, 
-            activityMonth:this.state.activityMonth})}}>
+            activityMonth:this.state.activityMonth,
+            studentIdx:this.state.studentIdx, studentNum:this.state.id})}}>
         </Button>
         </View>
       </View>

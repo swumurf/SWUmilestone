@@ -3,6 +3,7 @@ import {Alert, StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,Asyn
 import {RadioGroup} from 'react-native-radio-buttons-group'
 import {RadioButton} from 'react-native-paper'
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+import Mainpage from './Mainpage';
 
 
 let activityYear={
@@ -39,13 +40,18 @@ export default class InsertYearorMonth extends React.Component {
   constructor(props){
     super(props);
     const {navigation} = this.props;
-    this.state = {activityYear: '', value: null};
+    this.state = {
+      activityYear: '', 
+      value: null,
+      studentIdx:navigation.getParam('studentIdx'),
+      id : navigation.getParam('studentNum'),
+    };
   }
 
   /* Swipe */
   onSwipeRight = (gestureState) => {
     console.log('이전 화면으로 돌아가기');
-    this.props.navigation.navigate('Mainpage');
+    this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
   }
 
   _gradenullAlter=()=>{
@@ -76,7 +82,7 @@ export default class InsertYearorMonth extends React.Component {
       <View style={styles.container}>
         <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
-                this.props.navigation.navigate('Mainpage')}}
+                this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id})}}
                 title="HOME" color="#083388"
                 accessibilityLabel="Main"></Button>
         </View>
@@ -109,7 +115,7 @@ export default class InsertYearorMonth extends React.Component {
               {(this.state.value  === null) 
                 ? (this._gradenullAlter())
                 : (console.log('연간 추진 계획 ' + this.state.value), 
-                  this.props.navigation.navigate('Insertplanner1', {activityYear:this.state.value}));
+                  this.props.navigation.navigate('Insertplanner1', {activityYear:this.state.value, studentIdx:this.state.studentIdx, studentNum:this.state.id}));
               }}}
           ></Button>
           <Button color="#A53134" title="월간 추진 계획"
@@ -117,7 +123,7 @@ export default class InsertYearorMonth extends React.Component {
             {(this.state.value  === null) 
               ? (this._gradenullAlter())
               : (console.log('월간 추진 계획 ' + this.state.value), 
-                this.props.navigation.navigate('Insertplanner2', {activityYear:this.state.value}));
+                this.props.navigation.navigate('Insertplanner2', {activityYear:this.state.value, studentIdx:this.state.studentIdx, studentNum:this.state.id}));
             }}}
             ></Button>
         </View>

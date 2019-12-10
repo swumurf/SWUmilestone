@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage} from 'react-native';
-import { DataTable } from 'react-native-paper';
 
 const arr= [{list: '리스트 항목1'}, {list: '리스트 항목2'}, {list: '리스트 항목3'}];
 
@@ -8,29 +7,28 @@ export default class Mainpage extends React.Component {
   static navigationOptions = {
     header: null
   } 
-
-  static istrue = {
-    isMileage: true,
-    isGoal: true,
-    isList: true,
-  };
-
+  //static mileage;
   /*디버깅용 데이터 넘기기*/
   constructor(props){
     super(props);
     const {navigation}=this.props;
+    let mileage=null;
     this.state={
       studentIdx:navigation.getParam('studentIdx'),
       id : navigation.getParam('studentNum'),
       mileage: null,
       grad_Goal: null,
-      curMonth: new Date().getMonth() + 1,
+      curMonth: 5,
       activities:'',
       list: [],
     };
+    
+    
   };
+
   //메인페이지 정보 요청 
   postData=async()=>{
+    
     try{
       console.log('메인페이지 서버 요청');
       let url='http://15.165.96.110:3000/main/main/'+this.state.studentIdx;
@@ -44,40 +42,22 @@ export default class Mainpage extends React.Component {
         }
         });
         res=await res.json(); //서버로부터 응답
+       /* 
+        this.setState({mileage:res.data['mileage']}); //응답받은 마일리지
+        this.setState({grad_Goal:res.data['goal_graduate']}); //응답받은 goal_graduate 
+        this.setState({activities:res.data['activity']}); //응답받은 활동 activ ities 목록 (text)
+        */
 
-        if(Mainpage.istrue.isMileage){
-          console.log("마일리지 데이터 불러오는중 ^-^");
-          this.setState({mileage:res.data['mileage']});
-          if(this.state.mileage != null){
-            console.log(this.state.mileage);
-            Mainpage.istrue.isMileage = false;
-          }
-        }else{
-          console.log("마일리지 데이터 불러오기 끝!");
-        }
+       //Mainpage.mileage=res.data['mileage'];
+       //console.log('mileage');
+       //console.log(Mainpage.mileage);
+       
+        //this.props.grad_Goal=res.data['goal_graduate'];
 
-        if(Mainpage.istrue.isGoal){
-          console.log("목표 데이터 불러오는중 ^-^");
-          this.setState({grad_Goal:res.data['goal_graduate']});
-          if(this.state.grad_Goal != null){
-            console.log("졸업후 목표 : " + this.state.grad_Goal);
-            Mainpage.istrue.isGoal = false;
-          }
-        }else{
-          console.log("목표 데이터 불러오기 끝!");
-        }
-
-        if(Mainpage.istrue.isList){
-          console.log("리스트 데이터 불러오는중 ^-^");
-          this.setState({activities:res.data['activity']});
-          if(this.state.activities !== ''){
-            console.log("리스트 : " + this.state.activities);
-            Mainpage.istrue.isList = false;
-            this.splitactivities();
-          }
-        }else{
-          console.log("리스트 데이터 불러오기 끝!");
-        }
+        this.props.mileage=res.data['mileage'];
+        console.log('mileageeeee');
+        console.log(this.props.mileage);
+        this.splitactivities();
     }catch(error){
       console.error(error);
     }
@@ -86,19 +66,12 @@ export default class Mainpage extends React.Component {
   /*전체 활동 ',' 기준으로 자르는 함수*/
   splitactivities(){
     splitArray=this.state.activities.split(',');
-    this.setState({list: this.state.activities.split(',')});
     console.log('splitArray');
     console.log(splitArray);
-    console.log('list: '+this.state.list[0]);
   }
 
   render(){
     this.postData();
-    const lapsList = this.state.list.map((data) => {
-      return (
-        <Text style={styles.listText}>{data}</Text>
-      )
-    })
     return (
       <View style={styles.container}>
         <View style={{alignItems: 'flex-end', paddingVertical: 20, paddingRight: 15,}}>
@@ -112,28 +85,28 @@ export default class Mainpage extends React.Component {
         <View style={styles.titleView}>
           <Text style={styles.titleText}>학번       {this.state.id}   님</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
-          <Text style={styles.titleText}>나의 마일리지       {this.state.mileage}</Text>
+          <Text style={styles.titleText}>나의 마일리지       {this.props.mileage}</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
           <Text style={styles.titleText}>나의 졸업 후 목표</Text>
-          <Text style={styles.listText}>{this.state.grad_Goal}</Text>
+          <Text style={styles.listText}>{this.state.gradGoal}</Text>
           <View style={{height:1, width: "100%", backgroundColor: 'black'}}></View> 
         </View>
         <View style={styles.listview}>
         <Text style={styles.titleText}>2019년 {this.state.curMonth}월 MILESTONE</Text>
-        {lapsList}
+        <Text style={styles.listText}>리스트 항목1</Text>
         </View>
         <View style={styles.buttonView}>
           <View style={{flex: 1, flexDirection: 'column'}}>
           <Button color='#A53134' style={{height: 100, flex:1}} title ="활동 내역 확인 및 서류 제출"
             onPress={()=>{
             console.log('활동 내역 확인 및 서류 제출');
-            this.props.navigation.navigate('ConfirmPlanner');}}>
+            this.props.navigation.navigate('ConfirmPlanner', {studentIdx:this.state.studentIdx, studentNum:this.state.id});}}>
           </Button></View>
           <View style={{flex: 1, flexDirection: 'column'}}>
           <Button color='#A53134' style={{height: 100, flex:1}} title ="마일스톤 플래너 입력"
             onPress={()=>{
             console.log('마일스톤 플래너 입력');
-            this.props.navigation.navigate('InsertYearorMonth');}}
+            this.props.navigation.navigate('InsertYearorMonth', {studentIdx:this.state.studentIdx, studentNum:this.state.id});}}
           ></Button></View>
         </View>
       </View>

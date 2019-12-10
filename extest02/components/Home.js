@@ -141,7 +141,7 @@ render() {
     
           if(res.status=='200'){
              console.log('res.status 200');
-             this.props.navigation.navigate('Mainpage2',{studentIdx:this.state.studentIdx, studentNum:this.state.studentNum
+             this.props.navigation.navigate('Mainpage',{studentIdx:this.state.studentIdx, studentNum:this.state.studentNum
               }); //Mainpage로 navigate
            }else{
             console.log('res.status 400');
@@ -158,14 +158,6 @@ render() {
       console.log('signin as a manager');
       this.props.navigation.navigate('ManagerMain');}}>
         <Text style={styles.managerText}>관리자로 로그인하기</Text>
-      </TouchableOpacity>
-    </View>
-    <View>
-    <TouchableOpacity style={{alignItems: 'center'}} onPress={()=>{
-      console.log('LogIn for Debug');
-      this.props.navigation.navigate('MainDebug');
-      }}>
-        <Text style={styles.managerText}>디버그용 로그인</Text>
       </TouchableOpacity>
     </View>
   </View>

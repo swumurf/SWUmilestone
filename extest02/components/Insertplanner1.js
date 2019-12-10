@@ -28,13 +28,15 @@ export default class Insertplanner1 extends React.Component {
           goal4: '',
           temp: '',
           activityYear: navigation.getParam('activityYear'),
+          studentIdx:navigation.getParam('studentIdx'),
+          id : navigation.getParam('studentNum'),
       };
   }
   
   /* Swipe */
   onSwipeRight = (gestureState) => {
     console.log('이전 화면으로 돌아가기');
-    this.props.navigation.navigate('InsertYearorMonth');
+    this.props.navigation.navigate('InsertYearorMonth', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
   }
 
   postData = async (goal1, goal2, goal3, goal4) => {
@@ -48,7 +50,7 @@ export default class Insertplanner1 extends React.Component {
                   'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                  studentIdx: 1,
+                  studentIdx: this.state.studentIdx,
                   goal1: this.state.goal1,
                   goal2: this.state.goal2,
                   goal3: this.state.goal3,
@@ -62,6 +64,7 @@ export default class Insertplanner1 extends React.Component {
           console.log("---------------response line2 까지 됨-------------");
           console.log(res._bodyText);
           console.log("---------------response line3 까지 됨-------------");
+
       } catch (error) {
           console.error(error);
       }
@@ -106,7 +109,7 @@ export default class Insertplanner1 extends React.Component {
         <View style = {styles.container}>
             <View style={styles.homeview}>
             <Button color='#083388' style = {styles.button} onPress={() => {
-                this.props.navigation.navigate('Mainpage')}}
+                this.props.navigation.navigate('Mainpage',{studentIdx:this.state.studentIdx, studentNum:this.state.id})}}
                 title="HOME" color="#083388"
                 accessibilityLabel="Main"></Button>
             </View>
@@ -118,7 +121,8 @@ export default class Insertplanner1 extends React.Component {
             <Button color='#A53134' title="플래너 저장" onPress={()=>{
                 (this._goalSelect());
                 (this.postData(this.state.goal1, this.state.goal2, this.state.goal3, this.state.goal4));
-                this.props.navigation.navigate('Mainpage');}}>
+                this.props.navigation.navigate('Mainpage', {studentIdx:this.state.studentIdx, studentNum:this.state.id});
+            }}>
             </Button>
             </View>
             </GestureRecognizer>
