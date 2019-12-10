@@ -123,7 +123,7 @@ export default class Insertplanner4 extends React.Component {
         activityStartDate:this.state.selectedStartDate,
         activityExpireDate:this.state.selectedEndDate,
         activityContain:this.state.activityContain,
-        studentIdx:2,
+        studentIdx:this.state.studentIdx,
       })
       });
       
