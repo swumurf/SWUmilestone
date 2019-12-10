@@ -149,7 +149,7 @@ export default class Insertplanner4 extends React.Component {
         </ScrollView>
         <Button color='#A53134' title="플래너 저장" onPress={() => {
           this.postData(this.state.plan1,this.state.plan,this.state.plan3,this.state.selectedStartDate,this.state.selectedEndDate,this.state.title);
-          this.props.navigation.navigate('Mainpage')}} value="플래너 저장"></Button>
+          this.props.navigation.navigate('Mainpage2')}} value="플래너 저장"></Button>
       </View>
       </GestureRecognizer>
     );
