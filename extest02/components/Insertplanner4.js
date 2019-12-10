@@ -85,7 +85,23 @@ export default class Insertplanner4 extends React.Component {
   postData=async(activityName,activityYear,activityMonth,activityDetailNum,startDate,expireDate,title)=>{
     try{
       console.log('insert planner4 fetch function 진입');
-      console.log('activityName'+this.state.title);
+      
+      console.log('typeoffffffffffffffffffffffff');
+      console.log('activityName'+typeof(this.state.title));
+      console.log('activityName'+typeof(this.state.activityYear));
+      console.log('activityName'+typeof(this.state.activityDetailNum));
+      console.log('activityName'+typeof(this.state.selectedStartDate));
+      console.log('activityName'+typeof(this.state.selectedEndDate));
+      console.log('activityName'+typeof(this.state.activityContain));
+      /*
+      this.setState({activityName:''+this.state.title});
+      this.setState({activityYear:''+this.state.activityYear});
+      this.setState({activityDetailNum:''+this.state.activityDetailNum});
+      this.setState({activityStartDate:''+this.state.activityStartDate});
+      this.setState({activityExpireDate:''+this.state.activityExpireDate});
+      this.setState({activityContain:''+this.state.activityContain});
+      
+      */
       console.log('activityYear'+this.state.activityYear);
       console.log('activityMonth'+this.state.activityMonth);
       console.log('activityDetailNum'+this.state.activityDetailNum);
@@ -104,8 +120,8 @@ export default class Insertplanner4 extends React.Component {
         activityYear:this.state.activityYear,
         activityMonth:this.state.activityMonth,
         activityDetailNum:this.state.activityDetailNum,
-        activityStartDate:this.state.startDate,
-        activityExpireDate:this.state.expireDate,
+        activityStartDate:this.state.selectedStartDate,
+        activityExpireDate:this.state.selectedEndDate,
         activityContain:this.state.activityContain,
         studentIdx:2,
       })
