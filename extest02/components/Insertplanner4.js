@@ -82,18 +82,24 @@ export default class Insertplanner4 extends React.Component {
     );
   }
 
-  postData=async(activityYear,activityMonth,activityDetailNum,startDate,expireDate,title)=>{
+  postData=async(activityName,activityYear,activityMonth,activityDetailNum,startDate,expireDate,title)=>{
     try{
-      console.log('insert planner3 fetch function 진입');
-      let res=await fetch('http://15.165.96.110:3000/planner/planner',{
-      
+      console.log('insert planner4 fetch function 진입');
+      console.log('activityName'+this.state.title);
+      console.log('activityYear'+this.state.activityYear);
+      console.log('activityMonth'+this.state.activityMonth);
+      console.log('activityDetailNum'+this.state.activityDetailNum);
+      console.log('activityStartDate'+this.state.selectedStartDate);
+      console.log('activityExpireDate'+this.state.selectedEndDate);
+      console.log('activityContain'+this.state.activityContain);
+      console.log('studentIdx'+this.state.id);
+      let res=await fetch('http://15.165.96.110:3000/planner/planner',{ 
       method:'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
-        studentIdx:this.state.studentIdx,
         activityName:this.state.title,
         activityYear:this.state.activityYear,
         activityMonth:this.state.activityMonth,
@@ -101,15 +107,14 @@ export default class Insertplanner4 extends React.Component {
         activityStartDate:this.state.startDate,
         activityExpireDate:this.state.expireDate,
         activityContain:this.state.activityContain,
+        studentIdx:2,
       })
       });
       
-      res=await res;
+      res=await res.json();
       console.log("---------------response line1 까지 됨-------------");
       console.log(res);
-      console.log("---------------response line2 까지 됨-------------");
-      console.log(res._bodyText);
-      console.log("---------------response line3 까지 됨-------------");
+     
       this._showDialog();
     }catch(error){
       console.error(error);
@@ -164,7 +169,7 @@ export default class Insertplanner4 extends React.Component {
           </View>
         </ScrollView>
         <Button color='#A53134' title="플래너 저장" onPress={() => {
-          this.postData(this.state.plan1,this.state.plan,this.state.plan3,this.state.selectedStartDate,this.state.selectedEndDate,this.state.title);
+          this.postData(this.state.activityName,this.state.activityYear,this.state.activityMonth,this.state.activityDetailNum,this.state.selectedStartDate,this.state.selectedEndDate,this.state.title,this.state.studentIdx);
           this.props.navigation.navigate('Mainpage2')}} value="플래너 저장"></Button>
       </View>
       </GestureRecognizer>

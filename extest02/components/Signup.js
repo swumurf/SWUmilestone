@@ -38,7 +38,7 @@ export default class Signup extends React.Component {
   postData=async()=>{
     try{
       console.log('Signup fetch function 진입');
-      let res=await fetch('http://13.125.153.65:3000/user/signup',{
+      let res=await fetch('http://15.165.96.110:3000/user/signup',{
       method:'POST',
       headers: {
         Accept: 'application/json',

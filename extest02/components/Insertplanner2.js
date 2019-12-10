@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet,Text,View,Image,TextInput,TouchableOpacity,Button,AsyncStorage, Alert} from 'react-native';
 import { DataTable, Cell, TableButton } from 'react-native-paper';
-import Toast from 'react-native-simple-toast';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 import Dialog, { DialogFooter, DialogButton, DialogContent } from 'react-native-popup-dialog';
 
@@ -9,12 +8,12 @@ let loginInfo={
   studentNum:'',
   password:''
 };
-
+/*
 _showToast = () => {
   this._toast.show({
     position: Toast.constants.gravity.top,
   });
-};
+};*/
 
 
 _showDialog=(month)=>{
